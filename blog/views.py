@@ -1,4 +1,6 @@
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
+from django.urls import path
 from .models import Post
 
 # shows all posts as list
