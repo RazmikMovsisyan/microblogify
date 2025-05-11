@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Post List</title>
+</head>
+<body>
+    <h1>All Posts</h1>
+    {% for post in posts %}
+        <div>
+            <h2>{{ post.title }}</h2>
+            <p>{{ post.content|truncatechars:200 }}</p>
+            <p><em>By {{ post.author }} on {{ post.created_on }}</em></p>
+        </div>
+    {% empty %}
+        <p>No posts found.</p>
+    {% endfor %}
+</body>
+</html>
