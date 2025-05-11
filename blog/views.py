@@ -1,4 +1,4 @@
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from .models import Post
 
 # shows all posts as list
@@ -15,6 +15,12 @@ class PostDetailView(DetailView):
 
 # create new post
 class PostCreateView(CreateView):
+    model = Post
+    template_name = 'blog/post_form.html'
+    fields = ['title', 'content']
+
+# edit existing post
+class PostUpdateView(UpdateView):
     model = Post
     template_name = 'blog/post_form.html'
     fields = ['title', 'content']

@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Create Post</title>
+    <title>{% if form.instance.pk %}Edit Post{% else %}Create New Post{% endif %}</title>
 </head>
 <body>
-    <h2>Create New Post</h2>
+    <h2>{% if form.instance.pk %}Edit Post{% else %}Create New Post{% endif %}</h2>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
