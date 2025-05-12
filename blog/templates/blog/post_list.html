@@ -1,10 +1,10 @@
 {% extends 'blog/base.html' %}
 {% block content %}
-  <h1>All Posts</h1>
+  <h1>Explore the Posts of our Community!</h1>
   {% for post in posts %}
     <div class="card mb-3">
       <div class="card-body">
-        
+
         {% if post.image %}
         <img src="{{ post.image.url }}" alt="{{ post.title }}" style="max-width: 100%; height: auto;">
       {% endif %}
