@@ -1,0 +1,25 @@
+/* Logo */
+   .navbar-brand {
+    font-family: 'Tinos', serif;
+  }
+
+  /* Card Links Coloring */
+
+  .card-title a {
+    color: #000;
+  }
+  
+  .card-title a:hover {
+    color: #333; 
+    text-decoration: underline;
+  }
+  
+  .card-text {
+    color: #6c757d;
+
+  }
+ 
+  /* Card content text */
+  .justify-text {
+    text-align: justify;
+  }
