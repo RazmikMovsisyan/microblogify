@@ -1,9 +1,9 @@
 {% extends 'blog/base.html' %}
 {% block content %}
-  <h1 class="mb-4 text-center">Explore the Posts of our Community!</h1>
+  <h2 class="mb-4 text-center">Explore the Posts of our Community!</h2>
   <div class="row">
     {% for post in posts %}
-      <div class="col-md-4 mb-4">
+      <div class="col-md-3 mb-3">
         <div class="card h-100 shadow-sm">
           {% if post.image %}
           <a href="{% url 'post_detail' post.slug %}">
