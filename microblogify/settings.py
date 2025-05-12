@@ -181,9 +181,11 @@ LOGOUT_REDIRECT_URL = '/'
 ACCOUNT_LOGOUT_ON_GET       = True
 ACCOUNT_EMAIL_VERIFICATION  = "none"
 
-# Authentifizierung: nur Username
-ACCOUNT_LOGIN_METHODS = {'username', 'email'}
-ACCOUNT_SIGNUP_FIELDS = ['username', 'email', 'password1', 'password2']
+# Authentication:
+ACCOUNT_LOGIN_METHODS = ('username', 'email')
+ACCOUNT_SIGNUP_FIELDS = ('username*', 'email*', 'password1*', 'password2')
+
+
 
 # Media files
 MEDIA_URL  = '/media/'
