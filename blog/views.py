@@ -1,10 +1,10 @@
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.mixins import UserPassesTestMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
 from .models import Post
 from django.contrib import messages
-from django.urls import reverse_lazy
 
 class PostListView(ListView):
     model = Post
@@ -15,8 +15,6 @@ class PostDetailView(DetailView):
     model = Post
     template_name = 'blog/post_detail.html'
     context_object_name = 'post'
-    slug_field = 'slug'
-    slug_url_kwarg = 'slug'
 
 class PostCreateView(CreateView):
     model = Post
@@ -26,7 +24,7 @@ class PostCreateView(CreateView):
 
     def form_valid(self, form):
         form.instance.author = self.request.user
-        messages.success(self.request, "Post sucessfully created!")
+        messages.success(self.request, "Post successfully created!")
         return super().form_valid(form)
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
@@ -43,9 +41,14 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Post
     template_name = 'blog/post_confirm_delete.html'
     success_url = reverse_lazy('post_list')
-    slug_field = 'slug'
-    slug_url_kwarg = 'slug'
 
     def test_func(self):
         post = self.get_object()
         return self.request.user == post.author
+
+@login_required
+def profile_view(request):
+    user_posts = Post.objects.filter(author=request.user).order_by('-created_on')
+    return render(request, 'blog/profile.html', {
+        'posts': user_posts,
+    })
