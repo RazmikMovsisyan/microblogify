@@ -11,7 +11,7 @@
       <div class="card-body">
         <h5 class="card-title">{{ post.title }}</h5>
         <p class="card-text">{{ post.content|truncatewords:25 }}</p>
-        <a href="{% url 'post_detail' post.pk %}" class="btn btn-sm btn-primary">Ansehen</a>
+        <a href="{% url 'post_detail' post.slug %}" class="btn btn-sm btn-primary">See Post</a>
       </div>
     </div>
   {% empty %}
