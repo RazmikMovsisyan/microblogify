@@ -10,41 +10,46 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
-  <div class="container-fluid">
-      <div class="container-fluid" class="navbar-nav ms-auto">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <a class="navbar-brand" href="{% url 'post_list' %}">Microblogify</a>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ms-auto">
-            {% if user.is_authenticated %}
-            <li class="nav-item">
-              <span class="navbar-text me-3">
-                Logged in as {{ user.username }}
-              </span>
-            </li>
-                <a class="nav-link" href="{% url 'post_create' %}">New Post</a>
-              </li>
-              <a class="nav-link" href="{% url 'profile' %}">My Profile</a>
-              <li class="nav-item">
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
-              </li>
-            {% else %}
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'account_login' %}">Login</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'account_signup' %}">Sign Up</a>
-              </li>
-            {% endif %}
-          </ul>
-        </div>
-      </div>
-    </nav>
-    {% if messages %}
+  <div class="container-fluid d-flex justify-content-between align-items-center">
+    <!-- Logo -->
+    <a class="navbar-brand" href="{% url 'post_list' %}">Microblogify</a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navigation -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto">
+        {% if user.is_authenticated %}
+          <li class="nav-item">
+            <span class="navbar-text me-3">
+              Logged in as {{ user.username }}
+            </span>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'post_create' %}">New Post</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'profile' %}">My Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
+          </li>
+        {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'account_login' %}">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'account_signup' %}">Sign Up</a>
+          </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
+{% if messages %}
   <!-- new post success message -->
   <div class="container mt-3">
     {% for message in messages %}
@@ -55,9 +60,6 @@
     {% endfor %}
   </div>
 {% endif %}
-    </div>
-  </div>
-</nav>
 
 <div class="container">
     {% block content %}
