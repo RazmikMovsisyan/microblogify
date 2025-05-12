@@ -13,7 +13,7 @@
               <a href="{% url 'post_detail' post.slug %}" class="text-decoration-none">{{ post.title }}</a>
             </h5>
             <p class="card-text">{{ post.content|truncatechars:150 }}</p>
-            <small class="text-muted mt-auto">By {{ post.author }} on {{ post.created_on }}</small>
+            <p>by <a href="{% url 'profile' post.author.username %}">{{ post.author.username }}</a></p>
           </div>
         </div>
       </div>

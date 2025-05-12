@@ -5,6 +5,9 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from .models import Post
 from django.contrib import messages
+from .models import Profile
+from django.contrib.auth.models import User
+
 
 class PostListView(ListView):
     model = Post
@@ -46,9 +49,22 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         post = self.get_object()
         return self.request.user == post.author
 
+class UserProfileView(DetailView):
+    model = User
+    template_name = 'blog/profile.html'
+    context_object_name = 'profile_user'
+    slug_field = 'username'
+    slug_url_kwarg = 'username'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['posts'] = Post.objects.filter(author=self.object).order_by('-created_on')
+        return context
+    
 @login_required
 def profile_view(request):
     user_posts = Post.objects.filter(author=request.user).order_by('-created_on')
     return render(request, 'blog/profile.html', {
+        'profile_user': request.user,
         'posts': user_posts,
     })
