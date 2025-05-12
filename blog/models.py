@@ -18,8 +18,10 @@ class Post(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
 
-    featured_image = CloudinaryField('image', default='placeholder')
-
+    featured_image = CloudinaryField(
+        'image',
+        default='placeholder'
+    )
     def save(self, *args, **kwargs):
         if not self.slug:
             base_slug = slugify(self.title)

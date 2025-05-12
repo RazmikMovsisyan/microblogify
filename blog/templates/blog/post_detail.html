@@ -1,7 +1,17 @@
 {% extends 'blog/base.html' %}
+{% load static %}
+
 {% block content %}
   <h2>{{ post.title }}</h2>
-  <p>{{ post.content }}</p>
+  
+  {% if "placeholder" in post.featured_image.url %}
+        <img class="card-img-top" src="{% static 'images/default.jpg' %}"
+           alt="placeholder image">
+        {% else %}
+        <img class="card-img-top" src=" {{ post.featured_image.url }}" alt="{{ post.title }}">
+        {% endif %}
+
+<p>{{ post.content }}</p>
   <p><small>By {{ post.author }} on {{ post.created_on }}</small></p>
 
   {% if request.user == post.author %}
