@@ -6,8 +6,10 @@
       <div class="col-md-4 mb-4">
         <div class="card h-100 shadow-sm">
           {% if post.image %}
+          <a href="{% url 'post_detail' post.slug %}">
             <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}">
-          {% endif %}
+          </a>
+        {% endif %}
           <div class="card-body d-flex flex-column">
             <h5 class="card-title">
               <a href="{% url 'post_detail' post.slug %}" class="text-decoration-none">{{ post.title }}</a>
