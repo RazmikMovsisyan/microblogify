@@ -21,6 +21,6 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
-    path('blog/', include('blog.urls')),
-    path('', lambda request: redirect('post_list')),
+    path('', include('blog.urls')),
+    # path('', lambda request: redirect('post_list')),
 ]
