@@ -183,7 +183,7 @@ ACCOUNT_EMAIL_VERIFICATION  = "none"
 
 # Authentication:
 ACCOUNT_LOGIN_METHODS = ('username', 'email')
-ACCOUNT_SIGNUP_FIELDS = ('username*', 'email*', 'password1*', 'password2')
+ACCOUNT_SIGNUP_FIELDS = ('username*', 'email*', 'password1*', 'password2*')
 
 
 
