@@ -1,21 +1,24 @@
 {% extends 'blog/base.html' %}
 {% block content %}
-  <h1>Explore the Posts of our Community!</h1>
-  {% for post in posts %}
-    <div class="card mb-3">
-      <div class="card-body">
-
-        {% if post.image %}
-        <img src="{{ post.image.url }}" alt="{{ post.title }}" style="max-width: 100%; height: auto;">
-      {% endif %}
-
-
-        <h3><a href="{% url 'post_detail' post.slug %}">{{ post.title }}</a></h3>
-        <p>{{ post.content|truncatechars:200 }}</p>
-        <small>By {{ post.author }} on {{ post.created_on }}</small>
+  <h1 class="mb-4 text-center">Explore the Posts of our Community!</h1>
+  <div class="row">
+    {% for post in posts %}
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
+          {% if post.image %}
+            <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}">
+          {% endif %}
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">
+              <a href="{% url 'post_detail' post.slug %}" class="text-decoration-none">{{ post.title }}</a>
+            </h5>
+            <p class="card-text">{{ post.content|truncatechars:150 }}</p>
+            <small class="text-muted mt-auto">By {{ post.author }} on {{ post.created_on }}</small>
+          </div>
+        </div>
       </div>
-    </div>
-  {% empty %}
-    <p>No posts found.</p>
-  {% endfor %}
+    {% empty %}
+      <p>No posts found.</p>
+    {% endfor %}
+  </div>
 {% endblock %}
