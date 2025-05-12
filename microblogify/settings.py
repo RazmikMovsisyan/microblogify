@@ -64,6 +64,8 @@ INSTALLED_APPS = [
     'django_extensions',
     'crispy_forms',
     'crispy_bootstrap5',
+    'widget_tweaks',
+
 ]
 
 # CLOUDINARY_STORAGE = {
