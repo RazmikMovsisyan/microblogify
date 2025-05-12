@@ -7,6 +7,8 @@ from .models import Post
 from django.contrib import messages
 from .models import Profile
 from django.contrib.auth.models import User
+from django.contrib.messages.views import SuccessMessageMixin
+
 
 
 class PostListView(ListView):
@@ -44,18 +46,15 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         messages.success(self.request, "Your post has been updated.")
         return super().form_valid(form)
 
-class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+class PostDeleteView(SuccessMessageMixin, LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Post
     template_name = 'blog/post_confirm_delete.html'
     success_url = reverse_lazy('post_list')
+    success_message = "Your post has been deleted."
 
     def test_func(self):
         post = self.get_object()
         return self.request.user == post.author
-    
-    def delete(self, request, *args, **kwargs):
-        messages.success(self.request, "Your post has been deleted.")
-        return super().delete(request, *args, **kwargs)
 
 class UserProfileView(DetailView):
     model = User
