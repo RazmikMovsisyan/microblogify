@@ -31,10 +31,9 @@ class PostCreateView(CreateView):
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
-    template_name = 'blog/post_form.html'
     fields = ['title', 'content']
-    slug_field = 'slug'
-    slug_url_kwarg = 'slug'
+    template_name = 'blog/post_form.html'
+    success_url = reverse_lazy('post_list')
 
     def test_func(self):
         post = self.get_object()
