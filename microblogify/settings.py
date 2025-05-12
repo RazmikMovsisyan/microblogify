@@ -15,6 +15,8 @@ import os
 import dj_database_url
 if os.path.isfile('env.py'):
     import env
+from cloudinary.models import CloudinaryField
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -51,6 +53,15 @@ INSTALLED_APPS = [
     'cloudinary', 
     'cloudinary_storage',
 ]
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+# CLOUDINARY_STORAGE = {
+#     'CLOUD_NAME': 'microblogify-',
+#     'API_KEY': '232256587532251',
+#     'API_SECRET': 'yac7fwc0Lcwl1iTCT95KtA-1QKE',
+# }
+
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 MIDDLEWARE = [
@@ -150,10 +161,19 @@ AUTHENTICATION_BACKENDS = (
 )
 
 
+# Redirects
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
-ACCOUNT_LOGOUT_ON_GET = True
-ACCOUNT_EMAIL_VERIFICATION = "none"
-ACCOUNT_EMAIL_REQUIRED = False
-MEDIA_URL = '/media/'
+
+# Account settings
+ACCOUNT_LOGOUT_ON_GET       = True
+ACCOUNT_EMAIL_VERIFICATION  = "none"
+
+# Authentifizierung: nur Username
+ACCOUNT_LOGIN_METHODS = {'username', 'email'}
+ACCOUNT_SIGNUP_FIELDS = ['username', 'email', 'password1', 'password2']
+
+# Media files
+MEDIA_URL  = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+

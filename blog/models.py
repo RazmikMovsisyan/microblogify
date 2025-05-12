@@ -8,6 +8,7 @@ from django.utils.text import slugify
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.text import slugify
+from cloudinary.models import CloudinaryField
 
 class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -16,6 +17,8 @@ class Post(models.Model):
     content = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
+
+    featured_image = CloudinaryField('image', default='placeholder')
 
     def save(self, *args, **kwargs):
         if not self.slug:
