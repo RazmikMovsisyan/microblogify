@@ -18,7 +18,7 @@ class PostDetailView(DetailView):
 
 class PostCreateView(CreateView):
     model = Post
-    fields = ['title', 'content']
+    fields = ['title', 'content', 'image']
     template_name = 'blog/post_form.html'
     success_url = reverse_lazy('post_list')
 
@@ -29,7 +29,7 @@ class PostCreateView(CreateView):
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
-    fields = ['title', 'content']
+    fields = ['title', 'content', 'image']
     template_name = 'blog/post_form.html'
     success_url = reverse_lazy('post_list')
 

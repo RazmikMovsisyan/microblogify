@@ -17,11 +17,8 @@ class Post(models.Model):
     content = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
+    image = CloudinaryField('image', blank=True, null=True)
 
-    featured_image = CloudinaryField(
-        'image',
-        default='placeholder'
-    )
     def save(self, *args, **kwargs):
         if not self.slug:
             base_slug = slugify(self.title)
@@ -39,7 +36,7 @@ class Post(models.Model):
 # Profile Model
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='profile_pics/', default='default.jpg')
+    image = CloudinaryField('image', default='placeholder')
     bio = models.TextField(blank=True)
 
     def __str__(self):
