@@ -37,6 +37,9 @@ CLOUDINARY_STORAGE = {
     'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),
     'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),
 }
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -62,8 +65,6 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap5',
 ]
-
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # CLOUDINARY_STORAGE = {
 #     'CLOUD_NAME': 'microblogify-',
