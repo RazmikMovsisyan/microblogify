@@ -9,6 +9,9 @@
   {% for post in posts %}
     <div class="card mb-3">
       <div class="card-body">
+        {% if post.image %}
+        <img src="{{ post.image.url }}" alt="{{ post.title }}" style="max-width: 100%; height: auto;">
+      {% endif %}
         <h5 class="card-title">{{ post.title }}</h5>
         <p class="card-text">{{ post.content|truncatewords:25 }}</p>
         <a href="{% url 'post_detail' post.slug %}" class="btn btn-sm btn-primary">See Post</a>

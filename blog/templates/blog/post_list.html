@@ -4,6 +4,12 @@
   {% for post in posts %}
     <div class="card mb-3">
       <div class="card-body">
+        
+        {% if post.image %}
+        <img src="{{ post.image.url }}" alt="{{ post.title }}" style="max-width: 100%; height: auto;">
+      {% endif %}
+
+
         <h3><a href="{% url 'post_detail' post.slug %}">{{ post.title }}</a></h3>
         <p>{{ post.content|truncatechars:200 }}</p>
         <small>By {{ post.author }} on {{ post.created_on }}</small>
