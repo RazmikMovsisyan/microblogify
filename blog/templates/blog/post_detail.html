@@ -27,8 +27,13 @@
 <h4>Comments</h4>
 
 {% for comment in comments %}
-  <div class="mb-2">
-    <strong>{{ comment.author.username }}</strong> on {{ comment.created_on|date:"d.m.Y H:i" }}<br>
+<div class="mb-3 p-3 border rounded bg-light card-title">
+  <strong>
+<a href="{% url 'profile' comment.author.username %}">
+{{ comment.author.username }}
+</a>
+</strong>
+on {{ comment.created_on|date:"d.m.Y H:i" }}<br>
 
     {% if user == comment.author and request.POST.comment_id == comment.id|stringformat:"s" and request.POST.action == "edit" %}
       <form method="post">
