@@ -1,9 +1,10 @@
 {% extends 'blog/base.html' %}
 {% block content %}
-  <div class="row mt-2 px-3">
-    <h2 class="mb-4 text-center">Explore the Posts of our Community!</h2>
+  <div class="row container mt-2 px-3">
+    <h2 class="mb-4 text-center">EXPLORE ALL POSTS OF OUR COMMUNITY!</h2>
+    <hr>
     {% for post in posts %}
-      <div class="col-md-3 mb-4 px-3">
+      <div class="container col-md-3 mb-4 px-3">
         <div class="card h-100 shadow-sm">
           {% if post.image %}
           <a href="{% url 'post_detail' post.slug %}">
