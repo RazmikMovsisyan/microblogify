@@ -32,18 +32,43 @@ class PostDetailView(DetailView):
 
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
-        if not request.user.is_authenticated:
-            return redirect('login')
-
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.post = self.object
-            comment.author = request.user
-            comment.save()
-            messages.success(request, "Your comment was posted.")
-            return redirect('post_detail', slug=self.object.slug)
         context = self.get_context_data()
+
+        if not request.user.is_authenticated:
+            return redirect('account_login')
+
+        action = request.POST.get('action')
+        comment_id = request.POST.get('comment_id')
+
+        if action == "save" and comment_id:
+            comment = Comment.objects.get(id=comment_id, post=self.object, author=request.user)
+            content = request.POST.get('content')
+            if content:
+                comment.content = content
+                comment.save()
+                messages.success(request, "Your comment was updated.")
+            return redirect('post_detail', slug=self.object.slug)
+
+        elif action == "delete" and comment_id:
+            comment = Comment.objects.get(id=comment_id, post=self.object, author=request.user)
+            comment.delete()
+            messages.success(request, "Your comment was deleted.")
+            return redirect('post_detail', slug=self.object.slug)
+
+        elif action == "edit" and comment_id:
+            context['editing_comment_id'] = int(comment_id)
+            return self.render_to_response(context)
+
+        else:
+            form = CommentForm(request.POST)
+            if form.is_valid():
+                comment = form.save(commit=False)
+                comment.post = self.object
+                comment.author = request.user
+                comment.save()
+                messages.success(request, "Your comment was posted.")
+                return redirect('post_detail', slug=self.object.slug)
+
         context['comment_form'] = form
         return self.render_to_response(context)
     

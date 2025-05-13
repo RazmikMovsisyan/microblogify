@@ -29,7 +29,33 @@
 {% for comment in comments %}
   <div class="mb-2">
     <strong>{{ comment.author.username }}</strong> on {{ comment.created_on|date:"d.m.Y H:i" }}<br>
-    {{ comment.content|linebreaks }}
+
+    {% if user == comment.author and request.POST.comment_id == comment.id|stringformat:"s" and request.POST.action == "edit" %}
+      <form method="post">
+        {% csrf_token %}
+        <textarea name="content" class="form-control mb-2" rows="3">{{ comment.content }}</textarea>
+        <input type="hidden" name="comment_id" value="{{ comment.id }}">
+        <input type="hidden" name="action" value="save">
+        <button type="submit" class="btn btn-success btn-sm">Save</button>
+        <a href="{% url 'post_detail' post.slug %}" class="btn btn-secondary btn-sm">Cancel</a>
+      </form>
+    {% else %}
+      <p>{{ comment.content|linebreaks }}</p>
+      {% if user == comment.author %}
+        <form method="post" class="d-inline">
+          {% csrf_token %}
+          <input type="hidden" name="comment_id" value="{{ comment.id }}">
+          <input type="hidden" name="action" value="edit">
+          <button type="submit" class="btn btn-warning btn-sm">Edit</button>
+        </form>
+        <form method="post" class="d-inline" onsubmit="return confirm('Delete this comment?');">
+          {% csrf_token %}
+          <input type="hidden" name="comment_id" value="{{ comment.id }}">
+          <input type="hidden" name="action" value="delete">
+          <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+        </form>
+      {% endif %}
+    {% endif %}
   </div>
 {% empty %}
   <p>No comments yet.</p>
