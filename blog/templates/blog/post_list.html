@@ -3,7 +3,7 @@
   <h2 class="mb-4 text-center">Explore the Posts of our Community!</h2>
   <div class="row">
     {% for post in posts %}
-      <div class="col-md-3 mb-3">
+      <div class="col-md-3 mb-2 px-3">
         <div class="card h-100 shadow-sm">
           {% if post.image %}
           <a href="{% url 'post_detail' post.slug %}">
