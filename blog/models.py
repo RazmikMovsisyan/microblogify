@@ -12,8 +12,8 @@ from cloudinary.models import CloudinaryField
 
 class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    title = models.CharField(max_length=120)
-    slug = models.SlugField(unique=True, blank=True)
+    title = models.CharField(max_length=200)
+    slug = models.SlugField(unique=True, blank=True, max_length=200)
     content = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
