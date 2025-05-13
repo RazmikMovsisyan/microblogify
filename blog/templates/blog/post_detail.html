@@ -23,4 +23,26 @@
     <a href="{% url 'post_list' %}" class="btn btn-secondary btn-sm">Back</a>
   </div>
 </div>
+<hr>
+<h4>Comments</h4>
+
+{% for comment in comments %}
+  <div class="mb-2">
+    <strong>{{ comment.author.username }}</strong> on {{ comment.created_on|date:"d.m.Y H:i" }}<br>
+    {{ comment.content|linebreaks }}
+  </div>
+{% empty %}
+  <p>No comments yet.</p>
+{% endfor %}
+
+{% if user.is_authenticated %}
+  <form method="post" class="mt-4">
+    {% csrf_token %}
+    {{ comment_form.content }}
+    <button type="submit" class="btn btn-primary btn-sm mt-2">Add Comment</button>
+  </form>
+{% else %}
+  <p class="mt-4">You must be <a href="{% url 'account_login' %}">logged in</a> to comment. <br> Don't have an account? <a href="{% url 'account_signup' %}">Sign up</a>.</p>
+{% endif %}
+
 {% endblock %}
