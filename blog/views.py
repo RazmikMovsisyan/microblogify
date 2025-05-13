@@ -8,6 +8,8 @@ from django.contrib import messages
 from .models import Profile
 from django.contrib.auth.models import User
 from django.contrib.messages.views import SuccessMessageMixin
+from .models import Comment
+from .forms import CommentForm
 
 
 
