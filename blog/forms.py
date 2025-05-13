@@ -1,5 +1,6 @@
 from django import forms
 from .models import Comment
+from .models import Post
 
 class CommentForm(forms.ModelForm):
     class Meta:
@@ -20,3 +21,4 @@ class CommentForm(forms.ModelForm):
         if len(content) > 1000:
             raise forms.ValidationError("Comment must be 1000 characters or fewer.")
         return content
+
