@@ -8,7 +8,9 @@
     <h2 class="mb-4 text-center">{{ post.title }}</h2>
 
     {% if post.image %}
-      <img src="{{ post.image.url }}" alt="{{ post.title }}" class="img-fluid rounded mb-4 d-block mx-auto">
+      <div class="inner">
+        <img src="{{ post.image.url }}" alt="{{ post.title }}" class="img-fluid rounded mb-4 d-block mx-auto shadow">
+      </div>
     {% endif %}
     <p>
       <hr>
