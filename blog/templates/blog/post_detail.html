@@ -23,7 +23,7 @@
       created on: {{ post.created_on|date:"d.m.Y" }}
     </p>
 
-    <div class="justify-text">{{ post.content|linebreaks }}</div>
+    <div class="justify-text">{{ post.content|linebreaksbr }}</div>
     <hr>
     {% if request.user == post.author %}
       <a href="{% url 'post_update' post.slug %}" class="btn btn-warning btn-sm" aria-label="Edit post titled {{ post.title }}">Edit</a>
