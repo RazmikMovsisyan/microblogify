@@ -24,7 +24,7 @@
           {% if post.image %}
           <div class="inner">
             <a href="{% url 'post_detail' post.slug %}" aria-label="Read full post titled {{ post.title }}">
-              <img src="{{ post.image.url }}" class="card-img-top" alt="Image for post titled {{ post.title }}">
+              <img src="{{ post.image.url }}" class="card-img-top fixed-img" alt="Image for post titled {{ post.title }}">
             </a>
           </div>
           {% endif %}
