@@ -9,7 +9,7 @@
       {% csrf_token %}
       {{ form|crispy }}
       <div class="d-grid">
-        <button type="submit" class="btn btn-primary">Login</button>
+        <button type="submit" class="btn btn-dark">Login</button>
       </div>
     </form>
     <p class="text-center mt-5">Don’t have an account? <a href="{% url 'account_signup' %}">Sign up</a>.</p>
