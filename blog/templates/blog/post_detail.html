@@ -27,7 +27,13 @@
     <hr>
     {% if request.user == post.author %}
       <a href="{% url 'post_update' post.slug %}" class="btn btn-warning btn-sm" aria-label="Edit post titled {{ post.title }}">Edit</a>
-      <a href="{% url 'post_delete' post.slug %}" class="btn btn-danger btn-sm" aria-label="Delete post titled {{ post.title }}">Delete</a>
+      <button type="button"
+        class="btn btn-danger btn-sm"
+        data-bs-toggle="modal"
+        data-bs-target="#deletePostModal"
+        aria-label="Open dialog to confirm deletion of post {{ post.title }}">
+  Delete
+</button>
     {% endif %}
     <a href="{% url 'post_list' %}" class="btn btn-secondary btn-sm" aria-label="Return to post list">Back</a>
   </div>
@@ -112,6 +118,43 @@
         <a href="{% url 'account_signup' %}" aria-label="Sign up for an account">Sign up</a>.
       </p>
     {% endif %}
+  </div>
+</div>
+<div class="modal fade" id="deletePostModal" tabindex="-1"
+     aria-labelledby="deletePostModalLabel"
+     aria-hidden="true" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title text-danger" id="deletePostModalLabel">
+          Confirm Deletion
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                aria-label="Close confirmation dialog"></button>
+      </div>
+
+      <div class="modal-body" role="alert">
+        Are you sure you want to delete your post <strong>"{{ post.title }}"</strong>?<br>
+        This action cannot be undone.
+      </div>
+
+      <div class="modal-footer">
+        <form method="post" action="{% url 'post_delete' post.slug %}">
+          {% csrf_token %}
+          <button type="button" class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                  aria-label="Cancel deletion">
+            Cancel
+          </button>
+          <button type="submit" class="btn btn-danger"
+                  aria-label="Confirm deletion of post {{ post.title }}">
+            <i class="fas fa-trash-alt" aria-hidden="true"></i> Yes, delete
+          </button>
+        </form>
+      </div>
+
+    </div>
   </div>
 </div>
 {% endblock %}
