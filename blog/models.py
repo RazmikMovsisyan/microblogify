@@ -20,18 +20,26 @@ class Post(models.Model):
     image = CloudinaryField('image', blank=True, null=True)
 
     def save(self, *args, **kwargs):
-        if not self.slug:
-            base_slug = slugify(self.title)
-            unique_slug = base_slug
-            counter = 1
+        base_slug = slugify(self.title)
+        unique_slug = base_slug
+        counter = 1
+
+        if self.pk:
+            old_post = Post.objects.get(pk=self.pk)
+            if old_post.title != self.title:
+                while Post.objects.filter(slug=unique_slug).exclude(pk=self.pk).exists():
+                    unique_slug = f"{base_slug}-{counter}"
+                    counter += 1
+                self.slug = unique_slug
+
+        elif not self.slug:
             while Post.objects.filter(slug=unique_slug).exists():
                 unique_slug = f"{base_slug}-{counter}"
                 counter += 1
             self.slug = unique_slug
+
         super().save(*args, **kwargs)
 
-    def __str__(self):
-        return self.title
 
 # Profile Model
 class Profile(models.Model):
