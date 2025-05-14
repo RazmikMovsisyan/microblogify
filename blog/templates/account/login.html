@@ -4,15 +4,20 @@
 {% block content %}
 <div class="row justify-content-center mt-5">
   <div class="col-md-6">
-    <h2 class="mb-4 text-center">Login</h2>
-    <form method="post">
+    <h2 class="mb-4 text-center" aria-label="Login form for existing users">Login</h2>
+
+    <form method="post" aria-label="Login form">
       {% csrf_token %}
       {{ form|crispy }}
       <div class="d-grid">
-        <button type="submit" class="btn btn-dark">Login</button>
+        <button type="submit" class="btn btn-dark" aria-label="Submit login form">Login</button>
       </div>
     </form>
-    <p class="text-center mt-5">Don’t have an account? <a href="{% url 'account_signup' %}">Sign up</a>.</p>
+
+    <p class="text-center mt-5">
+      Don’t have an account? 
+      <a href="{% url 'account_signup' %}" aria-label="Go to sign up page">Sign up</a>.
+    </p>
   </div>
 </div>
 {% endblock %}

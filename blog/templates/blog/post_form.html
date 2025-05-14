@@ -9,7 +9,7 @@
     <div class="d-none d-md-block">
       <div class="card shadow-sm rounded-3">
         <div class="card-body">
-          <h2 class="card-title text-center mb-4">
+          <h2 class="card-title text-center mb-4" aria-label="{% if form.instance.pk %}Edit post form{% else %}Create new post form{% endif %}">
             {% if form.instance.pk %}Edit Post{% else %}Create New Post{% endif %}
           </h2>
 
@@ -19,27 +19,31 @@
             {{ form.title|as_crispy_field }}
             {{ form.content|as_crispy_field }}
 
-            <!-- Immage delete section -->
+            <!-- Image delete section -->
             <div class="mb-3">
               {% if form.instance.image %}
                 <div class="text-center mb-2">
-                  <img src="{{ form.instance.image.url }}" alt="Current Image"
+                  <img src="{{ form.instance.image.url }}" alt="Current image for post titled '{{ form.instance.title }}'"
                        class="img-fluid d-block mx-auto mb-2"
                        style="max-width: auto; height: auto;">
                   <div class="form-check d-inline-block">
-                    <input class="form-check-input" type="checkbox" name="image-clear" id="image-clear_id">
+                    <input class="form-check-input" type="checkbox" name="image-clear" id="image-clear_id" aria-label="Delete the current image">
                     <label class="form-check-label" for="image-clear_id">Check this box to delete the image or simply upload a new one</label>
                   </div>
                 </div>
               {% endif %}
               
               <!-- Upload Image -->
-              <input type="file" name="image" class="form-control" id="id_image">
+              <input type="file" name="image" class="form-control" id="id_image" aria-label="Upload new image">
             </div>
 
             <div class="d-grid gap-2 d-md-flex mt-4">
-              <button type="submit" class="btn btn-dark">Save</button>
-              <a href="{% url 'post_list' %}" class="btn btn-secondary ms-2">Cancel</a>
+              <button type="submit" class="btn btn-dark" aria-label="Save post">
+                Save
+              </button>
+              <a href="{% url 'post_list' %}" class="btn btn-secondary ms-2" aria-label="Cancel and go back to all posts">
+                Cancel
+              </a>
             </div>
           </form>
         </div>
@@ -48,7 +52,7 @@
 
     <!-- for smaller devices no card background -->
     <div class="d-block d-md-none px-3">
-      <h2 class="text-center mb-4">
+      <h2 class="text-center mb-4" aria-label="{% if form.instance.pk %}Edit post form{% else %}Create new post form{% endif %}">
         {% if form.instance.pk %}Edit Post{% else %}Create New Post{% endif %}
       </h2>
 
@@ -61,22 +65,26 @@
         <div class="mb-3">
           {% if form.instance.image %}
             <div class="text-center mb-2">
-              <img src="{{ form.instance.image.url }}" alt="Current Image"
+              <img src="{{ form.instance.image.url }}" alt="Current image for post titled '{{ form.instance.title }}'"
                    class="img-fluid d-block mx-auto mb-2">
               <div class="form-check d-inline-block">
-                <input class="form-check-input" type="checkbox" name="image-clear" id="image-clear_id">
+                <input class="form-check-input" type="checkbox" name="image-clear" id="image-clear_id" aria-label="Delete the current image">
                 <label class="form-check-label" for="image-clear_id">Check this box to delete the image or simply upload a new one</label>
               </div>
             </div>
           {% endif %}
           
           <!-- Upload Image -->
-          <input type="file" name="image" class="form-control" id="id_image">
+          <input type="file" name="image" class="form-control" id="id_image" aria-label="Upload new image">
         </div>
 
         <div class="d-grid gap-2">
-          <button type="submit" class="btn btn-dark">Save</button>
-          <a href="{% url 'post_list' %}" class="btn btn-secondary">Cancel</a>
+          <button type="submit" class="btn btn-dark" aria-label="Save post">
+            Save
+          </button>
+          <a href="{% url 'post_list' %}" class="btn btn-secondary" aria-label="Cancel and go back to all posts">
+            Cancel
+          </a>
         </div>
       </form>
     </div>

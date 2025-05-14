@@ -1,13 +1,13 @@
 {% extends "blog/base.html" %}
 
 {% block content %}
-<div class="container d-flex flex-column align-items-center justify-content-center text-center py-5" style="min-height: 60vh;">
-    <h1 class="display-1 fw-bold text-danger">404</h1>
+<div class="container d-flex flex-column align-items-center justify-content-center text-center py-5" style="min-height: 60vh;" role="alert" aria-label="404 error page">
+    <h1 class="display-1 fw-bold text-danger" aria-label="Error 404 - Page not found">404</h1>
     <h2 class="mb-4">Page Not Found</h2>
     <p class="lead mb-4">
         Sorry, the page you’re looking for doesn’t exist or has been moved.
     </p>
-    <a href="{% url 'post_list' %}" class="btn btn-danger btn-sm">
+    <a href="{% url 'post_list' %}" class="btn btn-danger btn-sm" aria-label="Go back to the homepage">
         Go to Homepage
     </a>
 </div>

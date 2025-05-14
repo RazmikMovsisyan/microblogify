@@ -1,31 +1,33 @@
 {% extends 'blog/base.html' %}
 {% block content %}
 <div class="container mt-1">
-  <h2 class="mb-2"><i class="bi bi-person"></i> {{ profile_user.username }}'s Profile</h2>
+  <h2 class="mb-2" aria-label="Profile page of {{ profile_user.username }}">
+    <i class="bi bi-person" aria-hidden="true"></i> {{ profile_user.username }}'s Profile
+  </h2>
 
   <hr>
-  <h4 class="mb-3"><i class="bi bi-book me-2"></i>Posts</h4>
+  <h4 class="mb-3"><i class="bi bi-book me-2" aria-hidden="true"></i>Posts</h4>
   
   <div class="row">
     {% for post in posts %}
       <div class="col-md-4 mb-4">
         <div class="card h-100 shadow">
           {% if post.image %}
-          <a href="{% url 'post_detail' post.slug %}">
+          <a href="{% url 'post_detail' post.slug %}" aria-label="Open post titled {{ post.title }}">
             <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}">
           </a>
-        {% endif %}
+          {% endif %}
           <div class="card-body d-flex flex-column">
             <h5 class="card-title">
-              <a href="{% url 'post_detail' post.slug %}" class="text-decoration-none">{{ post.title }}</a>
+              <a href="{% url 'post_detail' post.slug %}" class="text-decoration-none" aria-label="Read post: {{ post.title }}">{{ post.title }}</a>
             </h5>
             <p class="card-text justify-text">{{ post.content|truncatewords:70 }}</p>
-            <a href="{% url 'post_detail' post.slug %}" class="btn btn-sm btn btn-dark px-4 py-2 mt-auto">See Post</a>
+            <a href="{% url 'post_detail' post.slug %}" class="btn btn-sm btn btn-dark px-4 py-2 mt-auto" aria-label="Read full post: {{ post.title }}">See Post</a>
           </div>
         </div>
       </div>
     {% empty %}
-      <p>No posts by this user yet.</p>
+      <p role="status">No posts by this user yet.</p>
     {% endfor %}
   </div>
 </div>

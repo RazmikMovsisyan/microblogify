@@ -5,26 +5,31 @@
 {% block content %}
 <div class="row justify-content-center mt-2 px-3">
   <div class="col-md-8">
-    <h2 class="mb-4 text-center">{{ post.title }}</h2>
+    <h2 class="mb-4 text-center" aria-label="Post titled {{ post.title }}">{{ post.title }}</h2>
 
+    <!-- image with alt -->
     {% if post.image %}
       <div class="inner">
-        <img src="{{ post.image.url }}" alt="{{ post.title }}" class="img-fluid rounded mb-4 d-block mx-auto shadow">
+        <img src="{{ post.image.url }}" alt="Image for post titled '{{ post.title }}'" class="img-fluid rounded mb-4 d-block mx-auto shadow">
       </div>
     {% endif %}
+
     <p>
       <hr>
-      by <a href="{% url 'profile' post.author.username %}">{{ post.author.username }}</a>, 
+      by 
+      <a href="{% url 'profile' post.author.username %}" aria-label="View profile of {{ post.author.username }}">
+        {{ post.author.username }}
+      </a>, 
       created on: {{ post.created_on|date:"d.m.Y" }}
     </p>
     
     <div class="justify-text">{{ post.content|linebreaks }}</div>
     <hr>
     {% if request.user == post.author %}
-      <a href="{% url 'post_update' post.slug %}" class="btn btn-warning btn-sm">Edit</a>
-      <a href="{% url 'post_delete' post.slug %}" class="btn btn-danger btn-sm">Delete</a>
+      <a href="{% url 'post_update' post.slug %}" class="btn btn-warning btn-sm" aria-label="Edit post titled {{ post.title }}">Edit</a>
+      <a href="{% url 'post_delete' post.slug %}" class="btn btn-danger btn-sm" aria-label="Delete post titled {{ post.title }}">Delete</a>
     {% endif %}
-    <a href="{% url 'post_list' %}" class="btn btn-secondary btn-sm">Back</a>
+    <a href="{% url 'post_list' %}" class="btn btn-secondary btn-sm" aria-label="Return to post list">Back</a>
   </div>
 </div>
 
@@ -36,7 +41,7 @@
       <div class="mb-4 p-3 border rounded bg-light">
         <p class="mb-1">
           <strong>
-            <a href="{% url 'profile' comment.author.username %}">
+            <a href="{% url 'profile' comment.author.username %}" aria-label="View profile of {{ comment.author.username }}">
               {{ comment.author.username }}
             </a>
           </strong>
@@ -47,13 +52,13 @@
           <form method="post">
             {% csrf_token %}
             <div class="mb-2">
-              <textarea name="content" class="form-control" rows="3">{{ comment.content }}</textarea>
+              <textarea name="content" class="form-control" rows="3" aria-label="Edit your comment">{{ comment.content }}</textarea>
             </div>
             <input type="hidden" name="comment_id" value="{{ comment.id }}">
             <input type="hidden" name="action" value="save">
             <div class="d-flex gap-2">
-              <button type="submit" class="btn btn-success btn-sm">Save</button>
-              <a href="{% url 'post_detail' post.slug %}" class="btn btn-secondary btn-sm">Cancel</a>
+              <button type="submit" class="btn btn-success btn-sm" aria-label="Save edited comment">Save</button>
+              <a href="{% url 'post_detail' post.slug %}" class="btn btn-secondary btn-sm" aria-label="Cancel comment editing">Cancel</a>
             </div>
           </form>
         {% else %}
@@ -65,21 +70,21 @@
                 {% csrf_token %}
                 <input type="hidden" name="comment_id" value="{{ comment.id }}">
                 <input type="hidden" name="action" value="edit">
-                <button type="submit" class="btn btn-warning btn-sm">Edit</button>
+                <button type="submit" class="btn btn-warning btn-sm" aria-label="Edit comment from {{ comment.created_on|date:'d.m.Y H:i' }}">Edit</button>
               </form>
 
               <form method="post" onsubmit="return confirm('Delete this comment?');">
                 {% csrf_token %}
                 <input type="hidden" name="comment_id" value="{{ comment.id }}">
                 <input type="hidden" name="action" value="delete">
-                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                <button type="submit" class="btn btn-danger btn-sm" aria-label="Delete comment from {{ comment.created_on|date:'d.m.Y H:i' }}">Delete</button>
               </form>
             </div>
           {% endif %}
         {% endif %}
       </div>
     {% empty %}
-      <p>No comments yet.</p>
+      <p role="status">No comments yet.</p>
     {% endfor %}
 
     {% if user.is_authenticated %}
@@ -90,19 +95,23 @@
             {% csrf_token %}
             <div class="mb-3">
               {{ comment_form.content|add_class:"form-control" }}
+              <label for="{{ comment_form.content.id_for_label }}" class="visually-hidden">Your comment</label>
             </div>
             <div class="d-grid">
-              <button type="submit" class="btn btn-dark">Add Comment</button>
+              <button type="submit" class="btn btn-dark" aria-label="Submit new comment">Add Comment</button>
             </div>
           </form>
         </div>
       </div>
     {% else %}
-      <p class="mt-4">You must be <a href="{% url 'account_login' %}">logged in</a> to comment.<br>
-      Don’t have an account? <a href="{% url 'account_signup' %}">Sign up</a>.</p>
+      <p class="mt-4">
+        You must be 
+        <a href="{% url 'account_login' %}" aria-label="Log in to add a comment">logged in</a> 
+        to comment.<br>
+        Don’t have an account? 
+        <a href="{% url 'account_signup' %}" aria-label="Sign up for an account">Sign up</a>.
+      </p>
     {% endif %}
   </div>
 </div>
-
-
 {% endblock %}
