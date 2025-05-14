@@ -7,7 +7,7 @@
   <div class="col-md-8">
     <h2 class="mb-4 text-center" aria-label="Post titled {{ post.title }}">{{ post.title }}</h2>
 
-    <!-- image with alt -->
+  <!-- image with alt -->
     {% if post.image %}
       <div class="inner">
         <img src="{{ post.image.url }}" alt="Image for post titled '{{ post.title }}'" class="img-fluid rounded mb-4 d-block mx-auto shadow">
@@ -22,18 +22,18 @@
       </a>, 
       created on: {{ post.created_on|date:"d.m.Y" }}
     </p>
-    
+
     <div class="justify-text">{{ post.content|linebreaks }}</div>
     <hr>
     {% if request.user == post.author %}
       <a href="{% url 'post_update' post.slug %}" class="btn btn-warning btn-sm" aria-label="Edit post titled {{ post.title }}">Edit</a>
       <button type="button"
-        class="btn btn-danger btn-sm"
-        data-bs-toggle="modal"
-        data-bs-target="#deletePostModal"
-        aria-label="Open dialog to confirm deletion of post {{ post.title }}">
-  Delete
-</button>
+              class="btn btn-danger btn-sm"
+              data-bs-toggle="modal"
+              data-bs-target="#deletePostModal"
+              aria-label="Open dialog to confirm deletion of post {{ post.title }}">
+        Delete
+      </button>
     {% endif %}
     <a href="{% url 'post_list' %}" class="btn btn-secondary btn-sm" aria-label="Return to post list">Back</a>
   </div>
@@ -71,7 +71,7 @@
           <p class="mt-2">{{ comment.content|linebreaks }}</p>
 
           {% if user == comment.author %}
-            <div class="d-flex gap-2">
+            <div class="d-flex gap-2 mb-2 mt-3">
               <form method="post">
                 {% csrf_token %}
                 <input type="hidden" name="comment_id" value="{{ comment.id }}">
@@ -79,12 +79,51 @@
                 <button type="submit" class="btn btn-warning btn-sm" aria-label="Edit comment from {{ comment.created_on|date:'d.m.Y H:i' }}">Edit</button>
               </form>
 
-              <form method="post" onsubmit="return confirm('Delete this comment?');">
-                {% csrf_token %}
-                <input type="hidden" name="comment_id" value="{{ comment.id }}">
-                <input type="hidden" name="action" value="delete">
-                <button type="submit" class="btn btn-danger btn-sm" aria-label="Delete comment from {{ comment.created_on|date:'d.m.Y H:i' }}">Delete</button>
-              </form>
+              <!-- Delete Button -->
+              <button type="button"
+                      class="btn btn-danger btn-sm"
+                      data-bs-toggle="modal"
+                      data-bs-target="#commentDeleteModal-{{ comment.id }}"
+                      aria-label="Open dialog to delete comment from {{ comment.created_on|date:'d.m.Y H:i' }}">
+                Delete
+              </button>
+            </div>
+
+            <!-- Confirm Comment Deletion -->
+            <div class="modal fade" id="commentDeleteModal-{{ comment.id }}" tabindex="-1"
+                 aria-labelledby="commentDeleteModalLabel-{{ comment.id }}"
+                 aria-hidden="true" role="dialog">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+
+                  <div class="modal-header">
+                    <h5 class="modal-title text-danger" id="commentDeleteModalLabel-{{ comment.id }}">
+                      Confirm Comment Deletion
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close confirmation dialog"></button>
+                  </div>
+
+                  <div class="modal-body" role="alert">
+                    Are you sure you want to delete your comment from <strong>{{ comment.created_on|date:"d.m.Y H:i" }}</strong>?
+                  </div>
+
+                  <div class="modal-footer">
+                    <form method="post">
+                      {% csrf_token %}
+                      <input type="hidden" name="comment_id" value="{{ comment.id }}">
+                      <input type="hidden" name="action" value="delete">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                              aria-label="Cancel comment deletion">Cancel</button>
+                      <button type="submit" class="btn btn-danger"
+                              aria-label="Confirm deletion of comment from {{ comment.created_on|date:'d.m.Y H:i' }}">
+                        <i class="fas fa-trash-alt" aria-hidden="true"></i> Delete
+                      </button>
+                    </form>
+                  </div>
+
+                </div>
+              </div>
             </div>
           {% endif %}
         {% endif %}
@@ -120,6 +159,8 @@
     {% endif %}
   </div>
 </div>
+
+<!-- Confirm Post Deletion -->
 <div class="modal fade" id="deletePostModal" tabindex="-1"
      aria-labelledby="deletePostModalLabel"
      aria-hidden="true" role="dialog">
