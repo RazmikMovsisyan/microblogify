@@ -25,9 +25,20 @@ class CommentForm(forms.ModelForm):
 
 # Sign up Form with first and last name
 
+from allauth.account.forms import SignupForm
+from django import forms
+
 class CustomSignupForm(SignupForm):
-    first_name = forms.CharField(max_length=30, label='First Name')
-    last_name = forms.CharField(max_length=30, label='Last Name')
+    first_name = forms.CharField(
+        max_length=30,
+        label='First Name',
+        widget=forms.TextInput(attrs={'placeholder': 'First Name'})
+    )
+    last_name = forms.CharField(
+        max_length=30,
+        label='Last Name',
+        widget=forms.TextInput(attrs={'placeholder': 'Last Name'})
+    )
 
     def save(self, request):
         user = super().save(request)
