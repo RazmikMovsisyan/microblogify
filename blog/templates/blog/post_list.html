@@ -1,10 +1,25 @@
 {% extends 'blog/base.html' %}
 {% block content %}
-  <div class="row mt-2 px-3">
-    <h2 class="mb-4 text-center">EXPLORE ALL POSTS OF OUR COMMUNITY!<hr></h2>
 
+<div class="container">
+
+  <div class="d-flex flex-column flex-md-row justify-content-center align-items-center text-white text-center hero-banner p-4 rounded">
+    <div class="pe-md-4">
+      <h2 class="fs-3 fs-md-2 fw-bold">Explore All Posts From Our Community</h2>
+    </div>
+  
+    <div class="d-none d-md-block border-start mx-3" style="height: 80px; border-color: rgba(255,255,255,0.5);"></div>
+  
+    <div class="ps-md-4 pt-3 pt-md-0">
+      <p class="fs-6 fs-md-5 fw-light mb-0">
+        Get inspired by what others are sharing — ideas, thoughts, moments.
+      </p>
+    </div>
+  </div>
+
+  <div class="row mt-2">
     {% for post in posts %}
-      <div class="container col-md-3 mb-4 px-3">
+      <div class="col-md-3 mb-4">
         <div class="card h-100 shadow">
           {% if post.image %}
           <div class="inner">
@@ -12,13 +27,17 @@
               <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}">
             </a>
           </div>
-        {% endif %}
+          {% endif %}
           <div class="card-body d-flex flex-column">
             <h5 class="card-title text-center">
               <a href="{% url 'post_detail' post.slug %}" class="text-decoration-none">{{ post.title }}</a>
             </h5>
-            <p class="card-text text-muted text-center justify-content-center">{{ post.content|truncatechars:150 }}</p>
-            <p class="text-center">by <a href="{% url 'profile' post.author.username %}">{{ post.author.username }}</a></p>
+            <p class="card-text text-muted text-center justify-content-center">
+              {{ post.content|truncatechars:150 }}
+            </p>
+            <p class="text-center">
+              by <a href="{% url 'profile' post.author.username %}">{{ post.author.username }}</a>
+            </p>
           </div>
         </div>
       </div>
@@ -26,4 +45,6 @@
       <p>No posts found.</p>
     {% endfor %}
   </div>
+
+</div>  {# Ende container #}
 {% endblock %}
