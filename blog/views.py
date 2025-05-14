@@ -15,6 +15,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 
 # Django Generic Views
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.urls import reverse
 
 # Lokale Importe
 from .models import Post, Profile, Comment
@@ -95,15 +96,17 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
     fields = ['title', 'content', 'image']
     template_name = 'blog/post_form.html'
-    success_url = reverse_lazy('post_list')
 
     def test_func(self):
         post = self.get_object()
         return self.request.user == post.author
-    
+
     def form_valid(self, form):
         messages.success(self.request, "Your post has been updated.")
         return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('post_detail', kwargs={'slug': self.object.slug})
 
 class PostDeleteView(SuccessMessageMixin, LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Post

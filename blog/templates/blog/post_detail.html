@@ -9,9 +9,7 @@
 
   <!-- image with alt -->
     {% if post.image %}
-      <div class="inner">
         <img src="{{ post.image.url }}" alt="Image for post titled '{{ post.title }}'" class="img-fluid rounded mb-4 d-block mx-auto shadow">
-      </div>
     {% endif %}
 
     <p>
@@ -23,7 +21,7 @@
       created on: {{ post.created_on|date:"d.m.Y" }}
     </p>
 
-    <div class="justify-text">{{ post.content|linebreaksbr }}</div>
+    <div class="justify-text mt-4">{{ post.content|linebreaksbr }}</div>
     <hr>
     {% if request.user == post.author %}
       <a href="{% url 'post_update' post.slug %}" class="btn btn-warning btn-sm" aria-label="Edit post titled {{ post.title }}">Edit</a>
