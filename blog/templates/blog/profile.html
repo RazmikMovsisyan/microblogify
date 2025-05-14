@@ -3,7 +3,7 @@
 <div class="container mt-1">
   <div class="d-flex justify-content-between align-items-center">
     <h2 class="mb-2" aria-label="Profile page of {{ profile_user.username }}">
-      <i class="bi bi-person" aria-hidden="true"></i> {{ profile_user.username }}'s Profile
+      <i class="bi bi-person" aria-hidden="true"></i> {{ profile_user.first_name }}'s Profile
     </h2>
 
     {% if request.user == profile_user %}

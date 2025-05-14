@@ -15,9 +15,8 @@
     <p>
       <hr>
       by 
-      <a href="{% url 'profile' post.author.username %}" aria-label="View profile of {{ post.author.username }}">
-        {{ post.author.username }}
-      </a>, 
+      <a href="{% url 'profile' post.author.username%}" aria-label="View profile of {{ post.author.username }}">
+        {{ post.author.username }}</a>, 
       created on: {{ post.created_on|date:"d.m.Y" }}
     </p>
 

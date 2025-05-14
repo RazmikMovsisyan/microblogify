@@ -197,3 +197,6 @@ ACCOUNT_SIGNUP_FIELDS = ('username*', 'email*', 'password1*', 'password2*')
 MEDIA_URL  = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
+ACCOUNT_FORMS = {
+    'signup': 'blog.forms.CustomSignupForm'
+}
