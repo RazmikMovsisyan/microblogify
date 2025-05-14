@@ -75,5 +75,14 @@
     </div>
   </div>
 </div>
+<!-- A button to add new post as signed in user -->
+ 
+{% if request.user == profile_user %}
+<div class="text-center mt-4 mb-5">
+  <a href="{% url 'post_create' %}" class="btn btn-primary btn-lg px-4 py-2" aria-label="Add new post">
+    <i class="bi bi-plus-circle me-2" aria-hidden="true"></i> Add Post
+  </a>
+</div>
+{% endif %}
 
 {% endblock %}
