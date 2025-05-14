@@ -1,16 +1,24 @@
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+# Standardbibliotheken
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.http import HttpResponseRedirect
+
+# Django Auth
+from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
-from .models import Post
-from django.contrib import messages
-from .models import Profile
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
+
+# Django Messages
+from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
-from .models import Comment
+
+# Django Generic Views
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+
+# Lokale Importe
+from .models import Post, Profile, Comment
 from .forms import CommentForm
-from django.shortcuts import redirect
 
 
 
@@ -126,3 +134,16 @@ def profile_view(request):
         'profile_user': request.user,
         'posts': user_posts,
     })
+
+# User delete function
+@login_required
+def delete_profile(request):
+    if request.method == 'POST':
+        user = request.user
+        Post.objects.filter(author=user).delete()
+        Profile.objects.filter(user=user).delete()
+        user.delete()
+        logout(request)
+        messages.success(request, "Your profile and all posts have been permanently deleted.")
+        return redirect('post_list')  # Oder zur Landing Page
+    return redirect('profile')

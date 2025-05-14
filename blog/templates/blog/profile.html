@@ -1,9 +1,25 @@
 {% extends 'blog/base.html' %}
 {% block content %}
 <div class="container mt-1">
-  <h2 class="mb-2" aria-label="Profile page of {{ profile_user.username }}">
-    <i class="bi bi-person" aria-hidden="true"></i> {{ profile_user.username }}'s Profile
+  <div class="d-flex justify-content-between align-items-center">
+    <h2 class="mb-2" aria-label="Profile page of {{ profile_user.username }}">
+      <i class="bi bi-person" aria-hidden="true"></i> {{ profile_user.username }}'s Profile
+    </h2>
+
+    {% if request.user == profile_user %}
+    <form action="{% url 'delete_profile' %}" method="post"
+          onsubmit="return confirm('⚠️ Are you sure you want to permanently delete your profile and all posts?');">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger" aria-label="Delete your profile and all associated content">
+        <i class="bi bi-trash3" aria-hidden="true"></i> Delete Profile
+      </button>
+    </form>
+    {% endif %}
+  </div>
+
+    
   </h2>
+  
 
   <hr>
   <h4 class="mb-3"><i class="bi bi-book me-2" aria-hidden="true"></i>Posts</h4>
