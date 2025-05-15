@@ -6,7 +6,7 @@
 
 Welcome to **Microblogify** – a community microblogging platform!
 
-Microblogify is a modern, responsive full-stack web application designed to empower users to express themselves through short, concise blog posts—similar to a microblogging platform. Built with Django and a relational database, Microblogify enables users to share thoughts, follow others, and interact with content in a dynamic, community-driven environment.
+Microblogify is a modern, responsive full-stack web application designed to empower users to express themselves through short, concise blog posts—similar to a microblogging platform. Built with Django and a relational database, Microblogify enables users to share thoughts, and interact with content in a dynamic, community-driven environment.
 
 The platform offers essential features such as user registration, authentication, and role-based access, allowing different levels of interaction based on user status. Authenticated users can create, read, update, and delete posts, while also exploring content from the wider user base. Comments help foster engagement, turning the app into a vibrant space for digital expression.
 
@@ -34,7 +34,7 @@ The goal is to promote authentic user interactions and community discussions thr
   - [Clone and Fork](#clone-and-fork)
   - [Custom 404 Page](#custom-404-page)
   - [Credits](#credits)
-  - [Screenshots](#screenshots)
+  - [FinishedProduct](#finished-product)
 
 
 ---
@@ -169,7 +169,7 @@ The goal is to promote authentic user interactions and community discussions thr
 - Real-time notifications
 
 
-| **Original Story Title**       | **Included?** |
+| **Original Story Title**       | **Included** |
 |-------------------------------|---------------|
 | **Edit and Delete a Post**    | ✅             |
 | **Comment on Post**           | ✅             |
@@ -249,11 +249,11 @@ You can easily clone or fork the **Microblogify** repository for further develop
 
 ## Clone and Fork the Repository
 
-You can easily clone or fork the **Expense Tracker** repository for further development.
+You can easily clone or fork the **Microblogify** repository for further development.
 
 #### **Fork the Repository**
 
-1. Visit the repository on GitHub: [Expense Tracker Repository](https://github.com/RazmikMovsisyan/microblogify).
+1. Visit the repository on GitHub: [Microblogify Repository](https://github.com/RazmikMovsisyan/microblogify).
 2. Click the **Fork** button to create your own copy.
 
 #### **Clone the Repository**
@@ -273,7 +273,7 @@ The repository has a single branch with a clear commit history. To clone the rep
    ```
 4. Navigate into the directory:  
    ```bash
-   cd expense-tracker
+   cd Microblogify
    ```
 
 ##### For **Windows** Users:
@@ -289,7 +289,7 @@ The repository has a single branch with a clear commit history. To clone the rep
    ```
 4. Navigate into the directory:  
    ```cmd
-   cd expense-tracker
+   cd Microblogify
    ```
 
 ## Custom 404 Page
@@ -308,3 +308,7 @@ The favicon used in this project was obtained from **Icons8**. Icons8 offers a w
 Proper credit is given to all resources used in accordance with fair use and licensing guidelines.
 
 Thank you. 
+
+## Finished Product
+
+![finished prodcut](assets/images/finished-product.png)![post-comment-screenshot](assets/images/post-and-comment-screenshot.png)
