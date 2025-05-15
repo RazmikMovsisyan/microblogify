@@ -311,4 +311,4 @@ Thank you.
 
 ## Finished Product
 
-![finished prodcut](assets/images/finished-product.png)![post-comment-screenshot](assets/images/post-and-comment-screenshot.png)
+![finished prodcut](assets/images/finished-product.png)![footer](assets/images/footer.png)![signup](assets/images/signup.png)![login](assets/images/login.png)![post-comment-screenshot](assets/images/post-and-comment-screenshot.png)![profile](assets/images/profile.png)
