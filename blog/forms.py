@@ -1,7 +1,8 @@
 from django import forms
-from .models import Comment
-from .models import Post
 from allauth.account.forms import SignupForm
+
+from .models import Comment, Post
+
 
 class CommentForm(forms.ModelForm):
     class Meta:
@@ -15,18 +16,17 @@ class CommentForm(forms.ModelForm):
             }),
         }
 
-    
-    # Set Limit on input
     def clean_content(self):
+        """
+        Validates that the comment content does not exceed 1000 characters.
+        """
         content = self.cleaned_data['content']
         if len(content) > 1000:
-            raise forms.ValidationError("Comment must be 1000 characters or fewer.")
+            raise forms.ValidationError(
+                "Comment must be 1000 characters or fewer."
+            )
         return content
 
-# Sign up Form with first and last name
-
-from allauth.account.forms import SignupForm
-from django import forms
 
 class CustomSignupForm(SignupForm):
     first_name = forms.CharField(
@@ -41,6 +41,9 @@ class CustomSignupForm(SignupForm):
     )
 
     def save(self, request):
+        """
+        Saves the first and last name on user creation.
+        """
         user = super().save(request)
         user.first_name = self.cleaned_data['first_name']
         user.last_name = self.cleaned_data['last_name']

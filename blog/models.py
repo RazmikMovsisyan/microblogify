@@ -1,19 +1,15 @@
 from django.db import models
-
-# Create your models here.
-from django.db import models
-from django.contrib.auth.models import User
-from django.utils.text import slugify
-
-from django.db import models
 from django.contrib.auth.models import User
 from django.utils.text import slugify
 from cloudinary.models import CloudinaryField
 
+
 class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=201)
-    slug = models.SlugField(unique=True, blank=True, max_length=201)
+    slug = models.SlugField(
+        unique=True, blank=True, max_length=201
+    )
     content = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
@@ -27,21 +23,26 @@ class Post(models.Model):
         if self.pk:
             old_post = Post.objects.get(pk=self.pk)
             if old_post.title != self.title:
-                while Post.objects.filter(slug=unique_slug).exclude(pk=self.pk).exists():
+                while Post.objects.filter(
+                    slug=unique_slug
+                ).exclude(pk=self.pk).exists():
                     unique_slug = f"{base_slug}-{counter}"
                     counter += 1
                 self.slug = unique_slug
-
         elif not self.slug:
-            while Post.objects.filter(slug=unique_slug).exists():
+            while Post.objects.filter(
+                slug=unique_slug
+            ).exists():
                 unique_slug = f"{base_slug}-{counter}"
                 counter += 1
             self.slug = unique_slug
 
         super().save(*args, **kwargs)
 
+    def __str__(self):
+        return self.title
 
-# Profile Model
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = CloudinaryField('image', default='placeholder')
@@ -49,9 +50,14 @@ class Profile(models.Model):
 
     def __str__(self):
         return f"{self.user.username}'s Profile"
-    
+
+
 class Comment(models.Model):
-    post = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE)
+    post = models.ForeignKey(
+        Post,
+        related_name='comments',
+        on_delete=models.CASCADE
+    )
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
