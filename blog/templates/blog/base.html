@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Microblogify</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <title>Microblogify</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Favicon -->
   <link rel="icon" href="{% static 'favicon/icons8-blog-96.png' %}" type="image/png">
@@ -14,24 +14,22 @@
   <link rel="apple-touch-icon" sizes="144x144" href="{% static 'favicon/icons8-blog-144.png' %}">
   <link rel="shortcut icon" href="{% static 'favicon/icons8-blog-96.png' %}" type="image/png">
 
-  <!-- Optional: Fallback für ältere Browser -->
-  <link rel="shortcut icon" href="{% static '/favicon/icons8-blog-96.png"' %} type="image/png">
-    <!-- Bootstrap 5 via CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Bootstrap 5 via CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300..700;1,300..700&family=Funnel+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100..900;1,100..900&family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-    
-    <!-- CSS -->
-    <link rel="stylesheet" href="{% static '/css/style.css' %}">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300..700;1,300..700&family=Funnel+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100..900;1,100..900&family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="{% static '/css/style.css' %}">
 </head>
 
 <body class="d-flex flex-column min-vh-100">
 
-  <!-- Nav with ARIA label -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4" role="navigation" aria-label="Main Navigation">
+  <!-- Nav -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4" aria-label="Main Navigation">
     <div class="container-fluid d-flex justify-content-between align-items-center">
 
       <!-- Logo -->
@@ -94,7 +92,7 @@
   </div>
   {% endif %}
 
-  <main class="flex-fill" role="main">
+  <main class="flex-fill">
     <div class="container pb-5">
         {% block content %}
         {% endblock %}

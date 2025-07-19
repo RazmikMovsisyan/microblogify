@@ -15,11 +15,9 @@
 
           <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
-
             {{ form.title|as_crispy_field }}
             {{ form.content|as_crispy_field }}
 
-            <!-- Image delete section -->
             <div class="mb-3">
               {% if form.instance.image %}
                 <div class="text-center mb-2">
@@ -32,18 +30,12 @@
                   </div>
                 </div>
               {% endif %}
-              
-              <!-- Upload Image -->
               <input type="file" name="image" class="form-control" id="id_image" aria-label="Upload new image">
             </div>
 
             <div class="d-grid gap-2 d-md-flex mt-4">
-              <button type="submit" class="btn btn-dark" aria-label="Save post">
-                Save
-              </button>
-              <a href="{% url 'post_list' %}" class="btn btn-secondary ms-2" aria-label="Cancel and go back to all posts">
-                Cancel
-              </a>
+              <button type="submit" class="btn btn-dark" aria-label="Save post">Save</button>
+              <a href="{% url 'post_list' %}" class="btn btn-secondary ms-2" aria-label="Cancel and go back to all posts">Cancel</a>
             </div>
           </form>
         </div>
@@ -58,33 +50,37 @@
 
       <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
+        <div class="mb-3" id="div_id_title_mobile">
+          <label for="id_title_mobile" class="form-label requiredField">
+            Title<span class="asteriskField">*</span>
+          </label>
+          <input type="text" name="title" value="{{ form.title.value|default_if_none:'' }}" maxlength="201"
+                 class="textinput form-control" required id="id_title_mobile">
+        </div>
 
-        {{ form.title|as_crispy_field }}
-        {{ form.content|as_crispy_field }}
+        <div class="mb-3" id="div_id_content_mobile">
+          <label for="id_content_mobile" class="form-label requiredField">
+            Content<span class="asteriskField">*</span>
+          </label>
+          <textarea name="content" cols="40" rows="10" class="textarea form-control" required id="id_content_mobile">{{ form.content.value|default_if_none:'' }}</textarea>
+        </div>
 
         <div class="mb-3">
           {% if form.instance.image %}
             <div class="text-center mb-2">
-              <img src="{{ form.instance.image.url }}" alt="Current image for post titled '{{ form.instance.title }}'"
-                   class="img-fluid d-block mx-auto mb-2">
+              <img src="{{ form.instance.image.url }}" alt="Current image for post titled '{{ form.instance.title }}'" class="img-fluid d-block mx-auto mb-2">
               <div class="form-check d-inline-block">
-                <input class="form-check-input" type="checkbox" name="image-clear" id="image-clear_id" aria-label="Delete the current image">
-                <label class="form-check-label" for="image-clear_id">Check this box to delete the image or simply upload a new one</label>
+                <input class="form-check-input" type="checkbox" name="image-clear" id="image-clear_id_mobile" aria-label="Delete the current image">
+                <label class="form-check-label" for="image-clear_id_mobile">Check this box to delete the image or simply upload a new one</label>
               </div>
             </div>
           {% endif %}
-          
-          <!-- Upload Image -->
-          <input type="file" name="image" class="form-control" id="id_image" aria-label="Upload new image">
+          <input type="file" name="image" class="form-control" id="id_image_mobile" aria-label="Upload new image">
         </div>
 
         <div class="d-grid gap-2">
-          <button type="submit" class="btn btn-dark" aria-label="Save post">
-            Save
-          </button>
-          <a href="{% url 'post_list' %}" class="btn btn-secondary" aria-label="Cancel and go back to all posts">
-            Cancel
-          </a>
+          <button type="submit" class="btn btn-dark" aria-label="Save post">Save</button>
+          <a href="{% url 'post_list' %}" class="btn btn-secondary" aria-label="Cancel and go back to all posts">Cancel</a>
         </div>
       </form>
     </div>
