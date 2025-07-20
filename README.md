@@ -26,7 +26,9 @@ The goal is to promote authentic user interactions and community discussions thr
     - [App Owner Goals](#app-owner-goals)
     - [User Stories (prioritized using MoSCoW method)](#user-stories-prioritized-using-moscow-method)
   - [Validation](#validation)
-   - [HTML](#html)
+    - [HTML](#html)
+    - [CSS](#css)
+    - [JavaScript](#javascript)
   - [Testing](#testing)
     - [Manual Testing](#manual-testing)
     - [Bugs](#bugs)
@@ -192,6 +194,8 @@ The goal is to promote authentic user interactions and community discussions thr
 
 ### **HTML**
 
+I have used HTML W3C Validator to validate my HTML files.
+
 | File         | URL                                                                                                                                     | Screenshot                                      |
 |--------------|------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------|
 | [login.html](blog/templates/account/login.html)       | [Link](https://validator.w3.org/nu/?doc=https%3A%2F%2Fmicroblogify-f169ead0df1f.herokuapp.com%2Faccounts%2Flogin%2F)                     | ![](assets/validation/login.html.png)           |
@@ -201,8 +205,25 @@ The goal is to promote authentic user interactions and community discussions thr
 | [post_form.html](blog/templates/blog/post_form.html)  | [Link](https://validator.w3.org/nu/?doc=https%3A%2F%2Fmicroblogify-f169ead0df1f.herokuapp.com%2Fnew%2F)                                  | ![](assets/validation/post-form.html.png)       |
 | [post_list.html](blog/templates/blog/post_list.html)  | [Link](https://validator.w3.org/nu/?doc=https%3A%2F%2Fmicroblogify-f169ead0df1f.herokuapp.com)                                           | ![](assets/validation/base.html.png)            |
 | [profile.html](blog/templates/blog/profile.html)      | [Link](https://validator.w3.org/nu/?doc=https%3A%2F%2Fmicroblogify-f169ead0df1f.herokuapp.com%2Fprofile%2F)                              | ![](assets/validation/profile.html.png)         |
-| [post-form.html](blog/templates/blog/post-form.html)  | [Link](https://validator.w3.org/nu/?doc=https%3A%2F%2Fmicroblogify-f169ead0df1f.herokuapp.com%2Fnew%2F)                                  | ![](assets/validation/post-form.html.png)       |
 | [404.html](blog/templates/404.html)                   | *(Cannot provide w3 Validator link. Test via direct input due to 404 error)*                                                             | ![](assets/validation/404.html.png)             |
+
+### **CSS**
+
+I have used CSS Jigsaw Validator to validate my main CSS file.
+
+| File         | URL                                                                                                                                     | Screenshot                                      |
+|--------------|------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------|
+| [style.css](staticfiles/css/style.css)       | [Link](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fmicroblogify-f169ead0df1f.herokuapp.com%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en)                     | ![](assets/validation/blog:static:css:style.css.png)           |
+
+
+### **JavaScript**
+
+I have used JShint Validator to validate my JS file.
+
+
+| File         | URL                                                                                                                                     | Screenshot                                      |
+|--------------|------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------|
+| [javascript.js](blog/static/js/javascript.js)       | N/A                     | ![](assets/validation/javascript.js.png)           |
 
 ## **Testing**
 
@@ -219,6 +240,7 @@ The goal is to promote authentic user interactions and community discussions thr
 | Access control                | Unauthenticated user tries to create a post          | Redirected to login page                                | ✅          |
 
 ---
+
 
 ### **Bugs**
 - Initial login redirect not working → Fixed by setting `LOGIN_REDIRECT_URL`.
