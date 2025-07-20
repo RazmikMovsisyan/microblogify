@@ -29,6 +29,7 @@ The goal is to promote authentic user interactions and community discussions thr
     - [HTML](#html)
     - [CSS](#css)
     - [JavaScript](#javascript)
+    - [Python](#python)
   - [Testing](#testing)
     - [Manual Testing](#manual-testing)
     - [Bugs](#bugs)
@@ -224,6 +225,24 @@ I have used JShint Validator to validate my JS file.
 | File         | URL                                                                                                                                     | Screenshot                                      |
 |--------------|------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------|
 | [javascript.js](blog/static/js/javascript.js)       | N/A                     | ![](assets/validation/javascript.js.png)           |
+
+### **Python**
+
+I have used [CI Python Linter](https://pep8ci.herokuapp.com/) to validate my Python files.
+
+
+| File                      | Linter                                                                                                                                                                             | Screenshot                                      |
+|---------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------|
+| [admin.py](blog/admin.py)               | [Link](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/RazmikMovsisyan/microblogify/refs/heads/main/blog/admin.py)               | ![](assets/validation/admin.py.png)               |
+| [apps.py](blog/apps.py)                 | [Link](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/RazmikMovsisyan/microblogify/refs/heads/main/blog/apps.py)                | ![](assets/validation/apps.py.png)                |
+| [forms.py](blog/forms.py)               | [Link](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/RazmikMovsisyan/microblogify/refs/heads/main/blog/forms.py)               | ![](assets/validation/forms.py.png)               |
+| [models.py](blog/models.py)             | [Link](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/RazmikMovsisyan/microblogify/refs/heads/main/blog/models.py)              | ![](assets/validation/models.py.png)              |
+| [signal.py](blog/signal.py)             | [Link](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/RazmikMovsisyan/microblogify/refs/heads/main/blog/signal.py)              | ![](assets/validation/signal.py.png)              |
+| [urls.py](blog/urls.py)                 | [Link](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/RazmikMovsisyan/microblogify/refs/heads/main/blog/urls.py)                | ![](assets/validation/urls.py.png)                |
+| [views.py](blog/views.py)               | [Link](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/RazmikMovsisyan/microblogify/refs/heads/main/blog/views.py)               | ![](assets/validation/views.py.png)               |
+| [settings.py](microblogify/settings.py) | [Link](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/RazmikMovsisyan/microblogify/refs/heads/main/microblogify/settings.py)   | ![](assets/validation/microblogify:settings.py.png) |
+| [urls.py](microblogify/urls.py)         | [Link](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/RazmikMovsisyan/microblogify/refs/heads/main/microblogify/urls.py)       | ![](assets/validation/microblogify:urls.py.png)     |
+| [manage.py](microblogify/manage.py)       | [Link](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/RazmikMovsisyan/microblogify/refs/heads/main/manage.py)       | ![](assets/validation/manage.py.png)               |
 
 ## **Testing**
 
