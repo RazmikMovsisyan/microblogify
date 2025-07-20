@@ -25,6 +25,8 @@ The goal is to promote authentic user interactions and community discussions thr
     - [Used Technologies](#used-technologies)
     - [App Owner Goals](#app-owner-goals)
     - [User Stories (prioritized using MoSCoW method)](#user-stories-prioritized-using-moscow-method)
+  - [Validation](#validation)
+   - [HTML](#html)
   - [Testing](#testing)
     - [Manual Testing](#manual-testing)
     - [Bugs](#bugs)
@@ -185,6 +187,22 @@ The goal is to promote authentic user interactions and community discussions thr
 ![Responsive Mockup](/assets/images/user-stories-project-moscow.png)
 
 ---
+
+## **Validation**
+
+### **HTML**
+
+| File         | URL                                                                                                                                     | Screenshot                                      |
+|--------------|------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------|
+| [login.html](blog/templates/account/login.html)       | [Link](https://validator.w3.org/nu/?doc=https%3A%2F%2Fmicroblogify-f169ead0df1f.herokuapp.com%2Faccounts%2Flogin%2F)                     | ![](assets/validation/login.html.png)           |
+| [signup.html](blog/templates/account/signup.html)     | [Link](https://validator.w3.org/nu/?doc=https%3A%2F%2Fmicroblogify-f169ead0df1f.herokuapp.com%2Faccounts%2Fsignup%2F)                    | ![](assets/validation/signup.html.png)          |
+| [base.html](blog/templates/blog/base.html)            | [Link](https://validator.w3.org/nu/?doc=https%3A%2F%2Fmicroblogify-f169ead0df1f.herokuapp.com%2F)                                        | ![](assets/validation/base.html.png)            |
+| [post_detail.html](blog/templates/blog/post_detail.html) | [Link](https://validator.w3.org/nu/?doc=https%3A%2F%2Fmicroblogify-f169ead0df1f.herokuapp.com%2Fbuilding-a-family%2F)                 | ![](assets/validation/post-detail.html.png)     |
+| [post_form.html](blog/templates/blog/post_form.html)  | [Link](https://validator.w3.org/nu/?doc=https%3A%2F%2Fmicroblogify-f169ead0df1f.herokuapp.com%2Fnew%2F)                                  | ![](assets/validation/post-form.html.png)       |
+| [post_list.html](blog/templates/blog/post_list.html)  | [Link](https://validator.w3.org/nu/?doc=https%3A%2F%2Fmicroblogify-f169ead0df1f.herokuapp.com)                                           | ![](assets/validation/base.html.png)            |
+| [profile.html](blog/templates/blog/profile.html)      | [Link](https://validator.w3.org/nu/?doc=https%3A%2F%2Fmicroblogify-f169ead0df1f.herokuapp.com%2Fprofile%2F)                              | ![](assets/validation/profile.html.png)         |
+| [post-form.html](blog/templates/blog/post-form.html)  | [Link](https://validator.w3.org/nu/?doc=https%3A%2F%2Fmicroblogify-f169ead0df1f.herokuapp.com%2Fnew%2F)                                  | ![](assets/validation/post-form.html.png)       |
+| [404.html](blog/templates/404.html)                   | *(Cannot provide w3 Validator link. Test via direct input due to 404 error)*                                                             | ![](assets/validation/404.html.png)             |
 
 ## **Testing**
 
