@@ -26,6 +26,7 @@ The goal is to promote authentic user interactions and community discussions thr
     - [App Owner Goals](#app-owner-goals)
     - [User Stories (prioritized using MoSCoW method)](#user-stories-prioritized-using-moscow-method)
   - [Wireframes](#wireframes)
+  - [Database Design](#database-design)
   - [Validation](#validation)
     - [HTML](#html)
     - [CSS](#css)
@@ -191,6 +192,16 @@ The goal is to promote authentic user interactions and community discussions thr
 ![Responsive Mockup](/assets/images/user-stories-project-moscow.png)
 
 ---
+
+## Database Design
+
+This ERD shows the core models of the Django project and how they are connected.
+I kept it simple and easy to understand, so anyone can quickly see how the data is structured.
+
+
+![Entity Relationship Diagrams](assets/images/entity-relationship-diagrams.png)
+[Live Preview in Mermaid Editor](https://mermaid.live/edit#pako:eNqVU8FuwjAM_ZXK54JSRkrJlV0nIU27TEgoa0yJ1CQoTTcY8O9zgQKiaGw5xXnPfn5xsoXcKQQB6J-1LLw0MxvReqvQR7tdr7fbRVPvFrrESERLWd3AbhtNXRUIyz3KgHfwiTMGbUP58vrMOGR1GB5z1J8N56rO9rhvliaWVpe4Cl7bIqqJZqXBDoBG6vJ4um9rtnZ-KdvETc35HS1tZHElFHAdog_tbkUaew8UZB2W7q5G0KHsmqnKurgRzp0NdHOXU0UzCNrgaRxq7uwdsF6pDti1dzbTzueBnxV5nv_B5D87pzYghsJrBSL4GmMw6GmuFMKhoxmEJdLwQdBW4ULWZZjBzO4pbSXtu3OmzfSuLpYgFrKsKDpew-ndtxRq2L1ubN7GVAHEFtYgkhHvZ0M25ix5YjxL-SCGDYiM9dNhyjM-SniajLLxPobvgybrj_h4kDBGGSxlwyylDtAq9BNX2wBiwGNApYPzL8dfePiM-x8zbxbG)
+
 
 ## **Wireframes**
 
