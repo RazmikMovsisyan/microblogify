@@ -25,6 +25,7 @@ The goal is to promote authentic user interactions and community discussions thr
     - [Used Technologies](#used-technologies)
     - [App Owner Goals](#app-owner-goals)
     - [User Stories (prioritized using MoSCoW method)](#user-stories-prioritized-using-moscow-method)
+  - [Wireframes](#wireframes)
   - [Validation](#validation)
     - [HTML](#html)
     - [CSS](#css)
@@ -191,6 +192,31 @@ The goal is to promote authentic user interactions and community discussions thr
 
 ---
 
+## **Wireframes**
+
+I used [Balsamiq](https://balsamiq.com/wireframes) to create the wireframes for this project. I chose Balsamiq because it has a sketchy, hand-drawn look that makes it clear these are wireframes, not real screenshots. This helps avoid confusion and shows that the designs are just drafts.
+
+I tried to make the wireframes as realistic and useful as possible, while still keeping the rough, planning-style look that wireframes are meant to have.
+
+Balsamiq was helpful because:
+
+-It let me focus on layout and structure instead of details
+-It made it easy to share ideas and get feedback
+-It was quick to use and good for early design work
+
+The wireframes can also be viewed as a [PDF exported from Balsamiq.](assets/wireframes/balsamiq-wireframes.pdf)
+
+| Page         | Desktop View                                 | Mobile View                                       |
+|--------------|-----------------------------------------------|---------------------------------------------------|
+| Sign Up      | ![](assets/wireframes/sign-up.png)           | ![](assets/wireframes/phone-sign-up.png)          |
+| Login        | ![](assets/wireframes/login.png)             | ![](assets/wireframes/phone-login.png)            |
+| Homepage     | ![](assets/wireframes/home.png)              | ![](assets/wireframes/phone-homepage.png)         |
+| Add Post     | ![](assets/wireframes/add-post.png)          | ![](assets/wireframes/phone-new-post.png)         |
+| Post Detail  | ![](assets/wireframes/post-page.png)         | ![](assets/wireframes/phone-post-title.png)       |
+| Profile Page | ![](assets/wireframes/profile-page.png)      | ![](assets/wireframes/phone-profile-page.png)     |
+| Error 404    | ![](assets/wireframes/error-404.png)         | ![](assets/wireframes/phone-error-404.png)        |
+
+
 ## **Validation**
 
 ### **HTML**
@@ -242,7 +268,7 @@ I have used [CI Python Linter](https://pep8ci.herokuapp.com/) to validate my Pyt
 | [views.py](blog/views.py)               | [Link](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/RazmikMovsisyan/microblogify/refs/heads/main/blog/views.py)               | ![](assets/validation/views.py.png)               |
 | [settings.py](microblogify/settings.py) | [Link](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/RazmikMovsisyan/microblogify/refs/heads/main/microblogify/settings.py)   | ![](assets/validation/microblogify:settings.py.png) |
 | [urls.py](microblogify/urls.py)         | [Link](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/RazmikMovsisyan/microblogify/refs/heads/main/microblogify/urls.py)       | ![](assets/validation/microblogify:urls.py.png)     |
-| [manage.py](microblogify/manage.py)       | [Link](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/RazmikMovsisyan/microblogify/refs/heads/main/manage.py)       | ![](assets/validation/manage.py.png)               |
+| [manage.py](manage.py)       | [Link](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/RazmikMovsisyan/microblogify/refs/heads/main/manage.py)       | ![](assets/validation/manage.py.png)               |
 
 ## **Testing**
 
