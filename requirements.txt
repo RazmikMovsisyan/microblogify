@@ -21,3 +21,4 @@ sqlparse==0.5.3
 typing_extensions==4.13.2
 urllib3==1.26.20
 whitenoise==6.5.0
+coverage==7.9.2

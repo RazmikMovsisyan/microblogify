@@ -33,6 +33,7 @@ The goal is to promote authentic user interactions and community discussions thr
     - [JavaScript](#javascript)
     - [Python](#python)
   - [Testing](#testing)
+    - [Automatic Testing](#automatic-testing)
     - [Manual Testing](#manual-testing)
     - [Bugs](#bugs)
   - [Deployment](#deployment)
@@ -198,6 +199,10 @@ The goal is to promote authentic user interactions and community discussions thr
 This ERD shows the core models of the Django project and how they are connected.
 I kept it simple and easy to understand, so anyone can quickly see how the data is structured.
 
+The design was created during the planning phase and strictly followed during implementation.
+You can find the implementation in [blog/models.py](blog/models.py), which maps exactly to the structure shown here.
+
+
 
 ![Entity Relationship Diagrams](assets/images/entity-relationship-diagrams.png)
 [Live Preview in Mermaid Editor](https://mermaid.live/edit#pako:eNqVU8FuwjAM_ZXK54JSRkrJlV0nIU27TEgoa0yJ1CQoTTcY8O9zgQKiaGw5xXnPfn5xsoXcKQQB6J-1LLw0MxvReqvQR7tdr7fbRVPvFrrESERLWd3AbhtNXRUIyz3KgHfwiTMGbUP58vrMOGR1GB5z1J8N56rO9rhvliaWVpe4Cl7bIqqJZqXBDoBG6vJ4um9rtnZ-KdvETc35HS1tZHElFHAdog_tbkUaew8UZB2W7q5G0KHsmqnKurgRzp0NdHOXU0UzCNrgaRxq7uwdsF6pDti1dzbTzueBnxV5nv_B5D87pzYghsJrBSL4GmMw6GmuFMKhoxmEJdLwQdBW4ULWZZjBzO4pbSXtu3OmzfSuLpYgFrKsKDpew-ndtxRq2L1ubN7GVAHEFtYgkhHvZ0M25ix5YjxL-SCGDYiM9dNhyjM-SniajLLxPobvgybrj_h4kDBGGSxlwyylDtAq9BNX2wBiwGNApYPzL8dfePiM-x8zbxbG)
@@ -282,6 +287,35 @@ I have used [CI Python Linter](https://pep8ci.herokuapp.com/) to validate my Pyt
 | [manage.py](manage.py)       | [Link](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/RazmikMovsisyan/microblogify/refs/heads/main/manage.py)       | ![](assets/validation/manage.py.png)               |
 
 ## **Testing**
+
+### **Automatic Testing**
+
+I created a dedicated test suite using Django’s built-in `unittest` framework to verify the functionality and robustness of my project.
+
+## Test coverage
+
+I wrote unit tests to cover the following:
+
+- **Forms**: validation of comment input and user registration logic.
+- **Views**: logic and response of list/detail views, post creation/edit/delete.
+- **Models**: string representations and database interactions.
+- **URLs**: URL resolution and reverse name matching.
+
+In total, I created **6 functional test files**, which together yielded **75 % total code coverage**, including **100 % coverage for all test files themselves**.
+
+```
+coverage run --omit='*/migrations/*,*/admin.py,*/__init__.py' manage.py test
+coverage report
+```
+![coverage report](assets/validation/coverage-report.png)
+### Why not 100 %?
+
+Some parts of `views.py` involve conditional logic for authenticated users, HTTP POST actions, and error cases that are tedious or impractical to test in a limited timeframe. Similarly, `models.py` and `forms.py` include fallbacks or helper logic (like slugs, user fields) that are typically covered via integration testing.
+
+**In a real-world project**, I would:
+- add more integration and edge-case tests,
+- include `setUpTestData` for efficiency,
+- and use mocks for testing third-party behaviors.
 
 ### **Manual Testing**
 
