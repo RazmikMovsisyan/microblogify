@@ -66,7 +66,6 @@
         <div class="mb-3">
           {% if form.instance.image %}
             <div class="text-center mb-2">
-              <img src="{{ form.instance.image.url }}" alt="Current image for post titled '{{ form.instance.title }}'" class="img-fluid d-block mx-auto mb-2">
               <div class="form-check d-inline-block">
                 <input class="form-check-input" type="checkbox" name="image-clear" id="image-clear_id_mobile" aria-label="Delete the current image">
                 <label class="form-check-label" for="image-clear_id_mobile">Check this box to delete the image or simply upload a new one</label>
