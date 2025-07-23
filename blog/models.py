@@ -13,7 +13,7 @@ class Post(models.Model):
     content = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
-    image = CloudinaryField('image', blank=True, null=True)
+    image = CloudinaryField('image', blank=True, null=True, default='image_large-1172x570_rfmaxb')
 
     def save(self, *args, **kwargs):
         base_slug = slugify(self.title)
