@@ -477,34 +477,38 @@ The project should now be connected and deployed to Heroku!
 
 ### Cloudinary API
 
-This project uses the [Cloudinary API](https://cloudinary.com) to store media assets online, due to the fact that Heroku doesn't persist this type of data.
+- **Create an account** and log in at [cloudinary.com](https://cloudinary.com).
+- Once logged in, go to your **Dashboard**.
+- Click on **Go to API Keys**:  
+   ![dashboard](assets/documentation/cloudinary_dashboard.png)
 
-To obtain your own Cloudinary API key, create an account and log in.
-After logging in, go to your Dashboard.
-- Click on **Go to API Keys**
-![dashboard](assets/documentation/cloudinary_dashboard.png)
+- Then click on **Generate New API Key**:  
+   ![generate_api](assets/documentation/cloudinary_generate_api.png)
 
-- Click on **Generate New API Key**
-
-- You will see:
-**Key name, API key, API secret**
-
-![generate_api](assets/documentation/cloudinary_generate_api.png)
+- You will now see:
+   - **Key name**
+   - **API key**
+   - **API secret**
 
 - These are your Cloudinary credentials used to connect your app.
-- Copy the Cloud name, API key, and API secret.
-- Store them in your environment variables (e.g., in a .env file):
-- Be sure to remove the leading `CLOUDINARY_URL=` as part of the API **value**; this is the **key**.
-    - `cloudinary://123456789012345:AbCdEfGhIjKlMnOpQrStuVwXyZa@1a2b3c4d5)`
-- This will go into your own `env.py` file, and Heroku Config Vars, using the **key** of `CLOUDINARY_URL`.
+- Copy the `cloud_name`, `API key`, and `API secret`.
+- Store them in your environment variables (e.g., in a `.env` or `env.py` file):
+
+   ```env
+   CLOUDINARY_URL=cloudinary://123456789012345:AbCdEfGhIjKlMnOpQrStuVwXyZa@your_cloud_name
+   ```
+
+   > ⚠️ Make sure you include the full URL (starting with `cloudinary://`) as the **value** for the key `CLOUDINARY_URL`.
+
+- Add the same `CLOUDINARY_URL` as a Config Var in Heroku under **Settings > Config Vars**.
 
 ### PostgreSQL
 
 This project uses a [Code Institute PostgreSQL Database](https://dbs.ci-dbs.net) for the Relational Database with Django.
 
 > [!INFO]
-> - PostgreSQL databases by Code Institute are only available to CI Students.
-> - You must acquire your own PostgreSQL database through some other method if you plan to clone/fork this repository.
+> PostgreSQL databases by Code Institute are only available to CI Students.
+> You must acquire your own PostgreSQL database through some other method if you plan to clone/fork this repository.
 
 To obtain my own Postgres Database from Code Institute, I followed these steps:
 
