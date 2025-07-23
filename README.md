@@ -33,16 +33,18 @@ The goal is to promote authentic user interactions and community discussions thr
     - [JavaScript](#javascript)
     - [Python](#python)
   - [Testing](#testing)
+    - [Unit Testing](#unit-testing)
     - [Automated Testing](#automated-testing)
     - [Manual Testing](#manual-testing)
     - [Bugs](#bugs)
   - [Deployment](#deployment)
+      - [Heroku](#heroku)
   - [Version Control](#version-control)
   - [Development Process and Git Commands](#development-process-and-git-commands)
   - [Clone and Fork](#clone-and-fork)
   - [Custom 404 Page](#custom-404-page)
   - [Credits](#credits)
-  - [FinishedProduct](#finished-product)
+  - [Finished Product](#finished-product)
 
 
 ---
@@ -266,7 +268,7 @@ I have used [JShint Validator](https://jshint.com) Validator to validate my JS f
 
 | File         | URL                                                                                                                                     | Screenshot                                      |
 |--------------|------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------|
-| [javascript.js](blog/static/js/javascript.js)       | N/A                     | ![](assets/validation/javascript.js.png)           |
+| [javascript.js](staticfiles/js/javascript.js)       | N/A                     | ![](assets/validation/javascript.js.png)           |
 
 ### **Python**
 
@@ -287,6 +289,37 @@ I have used [CI Python Linter](https://pep8ci.herokuapp.com/) to validate my Pyt
 | [manage.py](manage.py)       | [Link](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/RazmikMovsisyan/microblogify/refs/heads/main/manage.py)       | ![](assets/validation/manage.py.png)               |
 
 ## **Testing**
+
+### **Unit Testing**
+
+`test_forms.py` & `test_models.py` demonstrate the functionality of some parts of my custom tests.
+
+---
+I performed two individual unit tests to verify the correctness of forms and models:
+
+Each file was executed independently using Django’s test runner, and screenshots were taken as proof of successful test execution.
+Both directories (`blog/` and `tests_blog/`) include `__init__.py` to ensure they are treated as Python modules.
+Each test file was run separately using the following commands:
+
+```
+# Run test_forms.py
+python3 manage.py test blog.tests_blog.test_forms
+```
+
+- `blog/tests_blog/test_forms.py`
+
+![unittest1](assets/documentation/unittest1.png)
+
+```
+# Run test_models.py
+python3 manage.py test blog.tests_blog.test_models
+```
+
+- `blog/tests_blog/test_models.py`
+
+![unittest2](assets/documentation/unittest2.png)
+
+---
 
 ### **Automated Testing**
 
@@ -359,7 +392,10 @@ Some parts of `views.py` involve conditional logic for authenticated users, HTTP
 
 ## **Deployment**
 
+### **Heroku**
+
 Deployed via **Heroku**.
+Live link: [Microblogify](https://microblogify-f169ead0df1f.herokuapp.com/)
 
 Steps:
 1. Created Heroku app and linked GitHub repo.
@@ -368,9 +404,106 @@ Steps:
 4. Added `Procfile`, `requirements.txt`, `runtime.txt`.
 5. Disabled Django debug, ensured `.env` file excluded via `.gitignore`.
 
-Live link: [Microblogify](https://microblogify-f169ead0df1f.herokuapp.com/)
 
 ---
+
+
+> [!EXAMPLE]
+> You would replace the values with your own if cloning/forking my repository.
+
+### Setting Config Vars on Heroku
+
+- Click on the **Settings** tab of your Heroku app.
+- Scroll down to the **Config Vars** section and click **Reveal Config Vars**.
+- Add the required environment variables by entering the appropriate **Key** and **Value**.
+
+![settings_config_vars](assets/documentation/heroku_settings_var.png)
+| Key | Value |
+| --- | --- |
+| `CLOUDINARY_URL` | user-inserts-own-cloudinary-url |
+| `DATABASE_URL` | user-inserts-own-postgres-database-url |
+| `SECRET_KEY` | any-random-secret-key |
+| `DISABLE_COLLECTSTATIC` | 1 (*this is temporary, and can be removed for the final deployment*) |
+
+I have used [Randomkeygen](https://randomkeygen.com/) to generate my individual `SECRET_KEY`
+
+Heroku needs some additional files in order to deploy properly.
+- [requirements.txt](requirements.txt)
+- [Procfile](Procfile)
+
+You can install this project's **[requirements.txt](requirements.txt)** (*where applicable*) using:
+
+- `pip3 install -r requirements.txt`
+
+If you have your own packages that have been installed, then the requirements file needs updated using:
+
+- `pip3 freeze --local > requirements.txt`
+
+The **[Procfile](Procfile)** can be created with the following command:
+
+- `echo web: gunicorn app_name.wsgi > Procfile`
+- *replace `app_name` with the name of your primary Django app name; the folder where `settings.py` is located*
+
+For Heroku deployment, follow these steps to connect your own GitHub repository to the newly created app:
+
+Either (*recommended*):
+
+- Select **Automatic Deployment** from the Heroku app.
+
+Or:
+
+- In the Terminal/CLI, connect to Heroku using this command: `heroku login -i`
+- Set the remote for Heroku: `heroku git:remote -a app_name` (*replace `app_name` with your app name*)
+- After performing the standard Git `add`, `commit`, and `push` to GitHub, you can now type:
+	- `git push heroku main`
+
+Or:
+
+Deploy manually:
+To deploy your app manually via the Heroku Dashboard:
+
+- Go to your app on the Heroku website.
+![Deploy0](assets/documentation/deploy0.png)
+
+- In the top menu, click on **“Deploy.”**
+![Deploy1](assets/documentation/deploy1.png)
+- Scroll down to the Manual Deploy section and click on **Deploy Branch**
+![Deploy2](assets/documentation/deploy2.png)
+
+- After a successful deployment, click the **“View”** button to open your live app.
+![Deploy3](assets/documentation/deploy3.png)
+
+The project should now be connected and deployed to Heroku!
+
+### Cloudinary API
+
+This project uses the [Cloudinary API](https://cloudinary.com) to store media assets online, due to the fact that Heroku doesn't persist this type of data.
+
+To obtain your own Cloudinary API key, create an account and log in.
+
+- For "Primary Interest", you can choose **Programmable Media for image and video API**.
+- *Optional*: edit your assigned cloud name to something more memorable.
+- On your Cloudinary Dashboard, you can copy your **API Environment Variable**.
+- Be sure to remove the leading `CLOUDINARY_URL=` as part of the API **value**; this is the **key**.
+    - `cloudinary://123456789012345:AbCdEfGhIjKlMnOpQrStuVwXyZa@1a2b3c4d5)`
+- This will go into your own `env.py` file, and Heroku Config Vars, using the **key** of `CLOUDINARY_URL`.
+
+### PostgreSQL
+
+This project uses a [Code Institute PostgreSQL Database](https://dbs.ci-dbs.net) for the Relational Database with Django.
+
+> [!INFO]
+> - PostgreSQL databases by Code Institute are only available to CI Students.
+> - You must acquire your own PostgreSQL database through some other method if you plan to clone/fork this repository.
+
+To obtain my own Postgres Database from Code Institute, I followed these steps:
+
+- Submitted my email address to the CI PostgreSQL Database link above.
+- An email was sent to me with my new Postgres Database.
+- The Database connection string will resemble something like this:
+    - `postgres://<db_username>:<db_password>@<db_host_url>/<db_name>`
+- You can use the above URL with Django; simply paste it into your `env.py` file and Heroku Config Vars as `DATABASE_URL`.
+
 
 ## **Version Control**
 - Git used throughout, hosted on [GitHub Repo](https://github.com/RazmikMovsisyan/microblogify).
@@ -386,26 +519,56 @@ Live link: [Microblogify](https://microblogify-f169ead0df1f.herokuapp.com/)
 - Finally, I pushed the changes to GitHub with `git push`.
 - Every push automatically deploys the latest changes to Heroku from the 'main' branch.
 
-## Clone and Fork the Repository
+## Clone and Fork
 
 You can easily clone or fork the **Microblogify** repository for further development.
-
-#### **Fork the Repository**
 
 1. Visit the repository on GitHub: [Microblogify Repository](https://github.com/RazmikMovsisyan/microblogify).
 2. Click the **Fork** button to create your own copy.
 
+For either method, you will need to install any applicable packages found within the [requirements.txt](requirements.txt) file.
 
-## Clone and Fork the Repository
+- `pip3 install -r requirements.txt`.
 
-You can easily clone or fork the **Microblogify** repository for further development.
+You will need to create a new file called `env.py` at the root-level, and include the same environment variables listed above from the Heroku deployment steps.
 
-#### **Fork the Repository**
+> [!IMPORTANT]
+> This is a sample only; you would replace the values with your own if cloning/forking my repository.
 
-1. Visit the repository on GitHub: [Microblogify Repository](https://github.com/RazmikMovsisyan/microblogify).
-2. Click the **Fork** button to create your own copy.
+Sample `env.py` file:
 
-#### **Clone the Repository**
+```python
+import os
+
+os.environ.setdefault("SECRET_KEY", "any-random-secret-key")
+os.environ.setdefault("DATABASE_URL", "user-inserts-own-postgres-database-url")
+os.environ.setdefault("CLOUDINARY_URL", "user-inserts-own-cloudinary-url")  # only if using Cloudinary
+os.environ.setdefault("HOST", "user-inserts-own-host")
+os.environ.setdefault("CSRF_TRUSTED_ORIGIN", "https://localhost")
+
+# local environment only (do not include these in production/deployment!)
+# (in settings I made sure that DEBUG = False in heroku if you do not add DEBUG to your config vars there)
+os.environ.setdefault("DEBUG", "True")
+```
+
+Once the project is cloned or forked, in order to run it locally, you'll need to follow these steps:
+
+- Start the Django app: `python3 manage.py runserver`
+- Stop the app once it's loaded: `CTRL+C` (*Windows/Linux*) or `⌘+C` (*Mac*)
+- Make any necessary migrations: `python3 manage.py makemigrations --dry-run` then `python3 manage.py makemigrations`
+- Migrate the data to the database: `python3 manage.py migrate --plan` then `python3 manage.py migrate`
+- Create a superuser: `python3 manage.py createsuperuser`
+- Load fixtures (*if applicable*): `python3 manage.py loaddata file-name.json` (*repeat for each file*)
+- Everything should be ready now, so run the Django app again: `python3 manage.py runserver`
+
+If you'd like to backup your database models, use the following command for each model you'd like to create a fixture for:
+
+- `python3 manage.py dumpdata your-model > your-model.json`
+- *repeat this action for each model you wish to backup*
+- **NOTE**: You should never make a backup of the default *admin* or *users* data with confidential information.
+
+
+#### **Clone the Repository using VS Code**
 
 The repository has a single branch with a clear commit history. To clone the repository:
 
@@ -456,7 +619,7 @@ The favicon used in this project was obtained from **Icons8**. Icons8 offers a w
 
 Proper credit is given to all resources used in accordance with fair use and licensing guidelines.
 
-Thank you. 
+A special thank to [Roman Rakic](https://github.com/rockroman) for reviewing my project during the 1:1 session and providing valuable feedback for the resubmission.
 
 ## Finished Product
 
