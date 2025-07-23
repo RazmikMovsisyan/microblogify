@@ -33,7 +33,7 @@ The goal is to promote authentic user interactions and community discussions thr
     - [JavaScript](#javascript)
     - [Python](#python)
   - [Testing](#testing)
-    - [Automatic Testing](#automatic-testing)
+    - [Automated Testing](#automated-testing)
     - [Manual Testing](#manual-testing)
     - [Bugs](#bugs)
   - [Deployment](#deployment)
@@ -216,9 +216,9 @@ I tried to make the wireframes as realistic and useful as possible, while still 
 
 Balsamiq was helpful because:
 
--It let me focus on layout and structure instead of details
--It made it easy to share ideas and get feedback
--It was quick to use and good for early design work
+- It let me focus on layout and structure instead of details
+- It made it easy to share ideas and get feedback
+- It was quick to use and good for early design work
 
 The wireframes can also be viewed as a [PDF exported from Balsamiq.](assets/wireframes/balsamiq-wireframes.pdf)
 
@@ -252,7 +252,7 @@ I have used HTML W3C Validator to validate my HTML files.
 
 ### **CSS**
 
-I have used CSS Jigsaw Validator to validate my main CSS file.
+I have used [CSS Jigsaw Validator](https://jigsaw.w3.org/css-validator)  to validate my main CSS file.
 
 | File         | URL                                                                                                                                     | Screenshot                                      |
 |--------------|------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------|
@@ -261,7 +261,7 @@ I have used CSS Jigsaw Validator to validate my main CSS file.
 
 ### **JavaScript**
 
-I have used JShint Validator to validate my JS file.
+I have used [JShint Validator](https://jshint.com) Validator to validate my JS file.
 
 
 | File         | URL                                                                                                                                     | Screenshot                                      |
@@ -288,7 +288,9 @@ I have used [CI Python Linter](https://pep8ci.herokuapp.com/) to validate my Pyt
 
 ## **Testing**
 
-### **Automatic Testing**
+### **Automated Testing**
+
+#### Python (Unit Testing)
 
 I created a dedicated test suite using Django’s built-in `unittest` framework to verify the functionality and robustness of my project.
 
@@ -303,10 +305,27 @@ I wrote unit tests to cover the following:
 
 In total, I created **6 functional test files**, which together yielded **75 % total code coverage**, including **100 % coverage for all test files themselves**.
 
+In order to run the tests, I ran the following command in the terminal:
+
+python3 manage.py test
+To create the coverage report, I would then run the following commands:
+
 ```
-coverage run --omit='*/migrations/*,*/admin.py,*/__init__.py' manage.py test
+pip3 install coverage
+pip3 freeze --local > requirements.txt
+
+coverage run --omit=*/site-packages/*,*/migrations/*,*/__init__.py,env.py,manage.py manage.py test
 coverage report
 ```
+
+To see the HTML version of the report, and find out whether some pieces of code were missing, I ran the following commands:
+
+```
+coverage html
+python3 -m http.server
+```
+Below are the results from the full coverage report on my application that I've tested:
+
 ![coverage report](assets/validation/coverage-report.png)
 ### Why not 100 %?
 
