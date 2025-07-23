@@ -480,10 +480,20 @@ The project should now be connected and deployed to Heroku!
 This project uses the [Cloudinary API](https://cloudinary.com) to store media assets online, due to the fact that Heroku doesn't persist this type of data.
 
 To obtain your own Cloudinary API key, create an account and log in.
+After logging in, go to your Dashboard.
+- Click on **Go to API Keys**
+![dashboard](assets/documentation/cloudinary_dashboard.png)
 
-- For "Primary Interest", you can choose **Programmable Media for image and video API**.
-- *Optional*: edit your assigned cloud name to something more memorable.
-- On your Cloudinary Dashboard, you can copy your **API Environment Variable**.
+- Click on **Generate New API Key**
+
+- You will see:
+**Key name, API key, API secret**
+
+![generate_api](assets/documentation/cloudinary_generate_api.png)
+
+- These are your Cloudinary credentials used to connect your app.
+- Copy the Cloud name, API key, and API secret.
+- Store them in your environment variables (e.g., in a .env file):
 - Be sure to remove the leading `CLOUDINARY_URL=` as part of the API **value**; this is the **key**.
     - `cloudinary://123456789012345:AbCdEfGhIjKlMnOpQrStuVwXyZa@1a2b3c4d5)`
 - This will go into your own `env.py` file, and Heroku Config Vars, using the **key** of `CLOUDINARY_URL`.
