@@ -408,7 +408,7 @@ Steps:
 ---
 
 
-> [!EXAMPLE]
+> [!IMPORTANT]
 > You would replace the values with your own if cloning/forking my repository.
 
 ### Setting Config Vars on Heroku
@@ -486,12 +486,12 @@ The project should now be connected and deployed to Heroku!
    ![generate_api](assets/documentation/cloudinary_generate_api.png)
 
 - You will now see:
-   - **Key name**
-   - **API key**
-   - **API secret**
+   - **Key Name**
+   - **API Key**
+   - **API Secret**
 
 - These are your Cloudinary credentials used to connect your app.
-- Copy the `cloud_name`, `API key`, and `API secret`.
+- Copy the `Key Name`, `API Key`, and `API Secret`.
 - Store them in your environment variables (e.g., in a `.env` or `env.py` file):
 
    ```env
@@ -506,7 +506,7 @@ The project should now be connected and deployed to Heroku!
 
 This project uses a [Code Institute PostgreSQL Database](https://dbs.ci-dbs.net) for the Relational Database with Django.
 
-> [!INFO]
+> [!NOTE]
 > PostgreSQL databases by Code Institute are only available to CI Students.
 > You must acquire your own PostgreSQL database through some other method if you plan to clone/fork this repository.
 
